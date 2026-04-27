@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
+import '../../../appRouter.dart';
 import '../../../const.dart';
 
 class SpalshScreenBody extends StatefulWidget {
@@ -11,90 +11,87 @@ class SpalshScreenBody extends StatefulWidget {
   State<SpalshScreenBody> createState() => _SpalshScreenBodyState();
 }
 
-class _SpalshScreenBodyState extends State<SpalshScreenBody> with SingleTickerProviderStateMixin{
+class _SpalshScreenBodyState extends State<SpalshScreenBody>
+    with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
+
   @override
   void initState() {
     super.initState();
+
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
     );
+
     slidingAnimation = Tween<Offset>(
-      begin: Offset(0, 5),
+      begin: const Offset(0, 1.5),
       end: Offset.zero,
-    ).animate(animationController);
+    ).animate(
+      CurvedAnimation(
+        parent: animationController,
+        curve: Curves.easeOut,
+      ),
+    );
+
     animationController.forward();
 
-    Future.delayed(Duration(seconds: 2), () {
-      GoRouter.of(context).push('/home');
+    Future.delayed(const Duration(seconds: 2), () {
+      if (mounted) {
+        GoRouter.of(context).go(AppRouter.routOnboardingScreen);
+      }
     });
-
   }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xff033439),
-            Color(0xff025754),
-            //Color(0xff016f66),
-            Color(0xff5a938c),
-            Color(0xffaab4a9),
-            Color(0xffe7eae1),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Image.asset(
+            backgroundImage,
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            logoImage,
-            width: MediaQuery.of(context).size.width * 0.5,
+        Positioned.fill(
+          child: Container(
+            color: Colors.black.withOpacity(0.05),
           ),
-          SizedBox(height: 10),
-          AnimatedBuilder(
-            animation: slidingAnimation,
-            builder: (context,_){
-              return SlideTransition(
+        ),
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                logoImage,
+                width: MediaQuery.of(context).size.width * 0.35,
+              ),
+              const SizedBox(height: 10),
+              SlideTransition(
                 position: slidingAnimation,
-                child: Text(
-                  'Shamora',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'PlayfairDisplay',
-                    fontSize: 32,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                    letterSpacing: 1.2,
-                    shadows: [
-                      Shadow(
-                        color: Colors.black45,
-                        blurRadius: 10,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
+                child: Image.asset(nameImage,width: 210,),
+              ),
+              const SizedBox(height: 3),
+              const Text(
+                'Explore the Beauty of Syria',
+                style: TextStyle(
+                  color: KPrimarColor,
+                  fontSize: 16,
+                  letterSpacing: 1,
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-            },
+              ),
+            ],
           ),
-          SizedBox(height: 5),
-          Text(
-            'Explore the Beauty of Syria',
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: 16,
-              letterSpacing: 1,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tourismapp/Features/SplashScreen/splash_screen.dart';
+
+import 'appRouter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home:SplashScreen()
+      routerConfig:AppRouter().router,
     );
   }
 }
