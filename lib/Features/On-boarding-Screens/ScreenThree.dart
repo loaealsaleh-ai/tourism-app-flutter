@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tourismapp/Features/On-boarding-Screens/widgets/buildDot.dart';
+import 'package:tourismapp/appRouter.dart';
 
 import '../../const.dart';
 
@@ -57,6 +59,7 @@ class ScreenThree extends StatelessWidget {
                 SizedBox(height: 30),
                 InkWell(
                   onTap: () {
+                    GoRouter.of(context).go(AppRouter.routGetStartedScreen);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
