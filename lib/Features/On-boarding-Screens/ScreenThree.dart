@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourismapp/Features/On-boarding-Screens/widgets/buildDot.dart';
 import 'package:tourismapp/appRouter.dart';
 
@@ -58,7 +59,13 @@ class ScreenThree extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
                 InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    final prefs = await SharedPreferences.getInstance();
+
+                    await prefs.setBool('seenOnboarding', true);
+
+                    if (!context.mounted) return;
+
                     GoRouter.of(context).go(AppRouter.routGetStartedScreen);
                   },
                   child: Padding(
@@ -89,8 +96,6 @@ class ScreenThree extends StatelessWidget {
         ),
       ],
     );
-
-
 
     /*Container(
       decoration: const BoxDecoration(

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../appRouter.dart';
 import '../../../const.dart';
 
@@ -37,8 +38,17 @@ class _SpalshScreenBodyState extends State<SpalshScreenBody>
 
     animationController.forward();
 
-    Future.delayed(const Duration(seconds: 2), () {
-      if (mounted) {
+    Future.delayed(const Duration(seconds: 2), () async {
+      if (!mounted) return;
+
+      final prefs = await SharedPreferences.getInstance();
+      final seenOnboarding = prefs.getBool('seenOnboarding') ?? false;
+
+      if (!mounted) return;
+
+      if (seenOnboarding) {
+        GoRouter.of(context).go(AppRouter.routGetStartedScreen);
+      } else {
         GoRouter.of(context).go(AppRouter.routOnboardingScreen);
       }
     });
