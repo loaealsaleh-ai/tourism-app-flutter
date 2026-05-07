@@ -1,23 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tourismapp/Features/On-boarding-Screens/widgets/buildDot.dart';
-
-import '../../const.dart';
+import 'package:tourismapp/const.dart';
+import 'package:tourismapp/features/On-boarding-Screens/widgets/buildDot.dart';
 
 class ScreenTwo extends StatelessWidget {
   const ScreenTwo({super.key, required this.pageController});
   final PageController pageController;
-
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned.fill(
-          child: Image.asset(
-            OnBoardingImageTwo,
-            fit: BoxFit.cover,
-          ),
+          child: Image.asset(OnBoardingImageTwo, fit: BoxFit.cover),
         ),
 
         SafeArea(
@@ -49,9 +44,9 @@ class ScreenTwo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildDot(isActive: false,),
-                    buildDot(isActive: true,),
-                    buildDot(isActive: false,),
+                    buildDot(isActive: false),
+                    buildDot(isActive: true),
+                    buildDot(isActive: false),
                   ],
                 ),
                 SizedBox(height: 30),
@@ -63,21 +58,24 @@ class ScreenTwo extends StatelessWidget {
                     );
                   },
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 10,
+                    ),
                     child: Container(
                       width: double.infinity,
                       height: 55,
                       decoration: BoxDecoration(
-                        color:KPrimarColor ,
+                        color: KPrimarColor,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Center(
                         child: Text(
                           'Next',
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -90,7 +88,6 @@ class ScreenTwo extends StatelessWidget {
         ),
       ],
     );
-
 
     /*Container(
       decoration: const BoxDecoration(

@@ -2,26 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tourismapp/Features/On-boarding-Screens/widgets/buildDot.dart';
+import 'package:tourismapp/const.dart';
+import 'package:tourismapp/features/On-boarding-Screens/widgets/buildDot.dart';
 import 'package:tourismapp/appRouter.dart';
-
-import '../../const.dart';
 
 class ScreenThree extends StatelessWidget {
   const ScreenThree({super.key});
-
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned.fill(
-          child: Image.asset(
-            OnBoardingImageThree,
-            fit: BoxFit.cover,
-          ),
+          child: Image.asset(OnBoardingImageThree, fit: BoxFit.cover),
         ),
-
 
         SafeArea(
           child: Padding(
@@ -52,9 +46,9 @@ class ScreenThree extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildDot(isActive: false,),
-                    buildDot(isActive: false,),
-                    buildDot(isActive: true,),
+                    buildDot(isActive: false),
+                    buildDot(isActive: false),
+                    buildDot(isActive: true),
                   ],
                 ),
                 SizedBox(height: 30),
@@ -69,21 +63,24 @@ class ScreenThree extends StatelessWidget {
                     GoRouter.of(context).go(AppRouter.routGetStartedScreen);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 10,
+                    ),
                     child: Container(
                       width: double.infinity,
                       height: 55,
                       decoration: BoxDecoration(
-                        color:KPrimarColor ,
+                        color: KPrimarColor,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Center(
                         child: Text(
                           'Get Started',
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
