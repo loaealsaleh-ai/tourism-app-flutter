@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            context.go(AppRouter.routGetStartedScreen);
+            context.go(AppRouter.routMainScreen);
           }
 
           if (state is AuthError) {

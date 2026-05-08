@@ -5,7 +5,7 @@ import 'Features/GetStartedScreen/getStartedScreen.dart';
 import 'MainScreen.dart';
 import 'package:tourismapp/features/SplashScreen/splash_screen.dart';
 import 'package:tourismapp/features/On-boarding-Screens/OnboardingScreen.dart';
-import 'package:tourismapp/features/GetStartedScreen/getStartedScreen.dart';
+import 'package:tourismapp/features/GetStartedScreen/getStartedScreen.dart' hide GetStartedScreen;
 import 'package:tourismapp/features/Accounts/LoginScreen.dart';
 import 'package:tourismapp/features/Accounts/ForgotPasswordScreen.dart';
 import 'package:tourismapp/features/auth/presentation/cubit/auth_cubit.dart';
@@ -26,10 +26,6 @@ class AppRouter {
   final AuthCubit authCubit;
 
   AppRouter(this.authCubit);
-
-  late final GoRouter router = GoRouter(
-    routes: [
-      GoRoute(path: '/', builder: (context, state) => SplashScreen()),
 
   final GoRouter router = GoRouter(
     routes: <RouteBase>[
