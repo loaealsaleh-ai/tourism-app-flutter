@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tourismapp/Features/GetStartedScreen/widgets/appBarGetStartedScreen.dart';
-import 'package:tourismapp/Features/GetStartedScreen/widgets/cardWidget.dart';
-import 'package:tourismapp/Features/GetStartedScreen/widgets/listViewCards.dart';
+import 'package:tourismapp/features/GetStartedScreen/widgets/appBarGetStartedScreen.dart';
+import 'package:tourismapp/features/GetStartedScreen/widgets/listViewCards.dart';
 import 'package:tourismapp/const.dart';
 
 class GetStartedScreen extends StatelessWidget {

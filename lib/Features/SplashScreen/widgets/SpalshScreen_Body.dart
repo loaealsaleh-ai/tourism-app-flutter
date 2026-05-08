@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../appRouter.dart';
-import '../../../const.dart';
+import 'package:tourismapp/appRouter.dart';
+import 'package:tourismapp/const.dart';
 
 class SpalshScreenBody extends StatefulWidget {
   const SpalshScreenBody({super.key});
@@ -26,15 +26,10 @@ class _SpalshScreenBodyState extends State<SpalshScreenBody>
       duration: const Duration(seconds: 1),
     );
 
-    slidingAnimation = Tween<Offset>(
-      begin: const Offset(0, 1.5),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: Curves.easeOut,
-      ),
-    );
+    slidingAnimation =
+        Tween<Offset>(begin: const Offset(0, 1.5), end: Offset.zero).animate(
+          CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+        );
 
     animationController.forward();
 
@@ -64,16 +59,9 @@ class _SpalshScreenBodyState extends State<SpalshScreenBody>
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        Positioned.fill(child: Image.asset(backgroundImage, fit: BoxFit.cover)),
         Positioned.fill(
-          child: Image.asset(
-            backgroundImage,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Positioned.fill(
-          child: Container(
-            color: Colors.black.withOpacity(0.05),
-          ),
+          child: Container(color: Colors.black.withOpacity(0.05)),
         ),
         Center(
           child: Column(
@@ -86,7 +74,7 @@ class _SpalshScreenBodyState extends State<SpalshScreenBody>
               const SizedBox(height: 10),
               SlideTransition(
                 position: slidingAnimation,
-                child: Image.asset(nameImage,width: 210,),
+                child: Image.asset(nameImage, width: 210),
               ),
               const SizedBox(height: 3),
               const Text(
