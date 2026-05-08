@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'Features/GetStartedScreen/getStartedScreen.dart';
+import 'MainScreen.dart';
 import 'package:tourismapp/features/SplashScreen/splash_screen.dart';
 import 'package:tourismapp/features/On-boarding-Screens/OnboardingScreen.dart';
 import 'package:tourismapp/features/GetStartedScreen/getStartedScreen.dart';
@@ -14,6 +16,7 @@ import 'features/Accounts/VerificationCodeScreen.dart';
 class AppRouter {
   static const String routOnboardingScreen = '/OnboardingScreen';
   static const String routGetStartedScreen = '/GetStartedScreen';
+  static const String routMainScreen='/MainScreen';
   static const String login = '/login';
   static const String register = '/register';
   static const String forgotPassword = '/forgotPassword';
@@ -28,6 +31,14 @@ class AppRouter {
     routes: [
       GoRoute(path: '/', builder: (context, state) => SplashScreen()),
 
+  final GoRouter router = GoRouter(
+    routes: <RouteBase>[
+      GoRoute(
+        path: '/',
+        builder: (BuildContext context, GoRouterState state) {
+          return SplashScreen();
+        },
+      ),
       GoRoute(
         path: routOnboardingScreen,
         builder: (context, state) => OnboardingScreen(),
@@ -36,6 +47,12 @@ class AppRouter {
       GoRoute(
         path: routGetStartedScreen,
         builder: (context, state) => GetStartedScreen(),
+      ),
+      GoRoute(
+        path: routMainScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return  MainScreen();
+        },
       ),
 
       GoRoute(path: login, builder: (context, state) => LoginScreen()),
