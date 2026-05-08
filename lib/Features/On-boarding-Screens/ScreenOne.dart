@@ -1,23 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tourismapp/Features/On-boarding-Screens/widgets/buildDot.dart';
-
-import '../../const.dart';
+import 'package:tourismapp/const.dart';
+import 'package:tourismapp/features/On-boarding-Screens/widgets/buildDot.dart';
 
 class ScreenOne extends StatelessWidget {
   const ScreenOne({super.key, required this.pageController});
   final PageController pageController;
   @override
   Widget build(BuildContext context) {
-    return  Stack(
+    return Stack(
       children: [
         Positioned.fill(
-          child: Image.asset(
-            OnBoardingImageOne,
-            fit: BoxFit.cover,
-          ),
+          child: Image.asset(OnBoardingImageOne, fit: BoxFit.cover),
         ),
-
 
         SafeArea(
           child: Padding(
@@ -88,15 +83,12 @@ class ScreenOne extends StatelessWidget {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
         ),
       ],
     );
-
-
 
     /*Container(
       decoration: const BoxDecoration(

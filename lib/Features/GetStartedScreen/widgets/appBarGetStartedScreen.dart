@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
-
-import '../../../const.dart';
+import 'package:tourismapp/const.dart';
 
 class AppBartStartedScreen extends StatelessWidget {
   const AppBartStartedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(logoImage, height: 40),

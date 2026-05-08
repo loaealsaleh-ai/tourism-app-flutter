@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tourismapp/const.dart';
 
 class buildDot extends StatelessWidget {
-  const buildDot({super.key,required this.isActive});
+  const buildDot({super.key, required this.isActive});
   final bool isActive;
   @override
   Widget build(BuildContext context) {
