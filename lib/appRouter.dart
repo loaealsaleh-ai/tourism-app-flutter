@@ -29,8 +29,8 @@ class AppRouter {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return //MainScreen();
-            SplashScreen();
+          return MainScreen();
+            //SplashScreen();
         },
       ),
       GoRoute(
