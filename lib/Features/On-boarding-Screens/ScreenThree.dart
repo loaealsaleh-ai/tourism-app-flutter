@@ -60,7 +60,7 @@ class ScreenThree extends StatelessWidget {
 
                     if (!context.mounted) return;
 
-                    GoRouter.of(context).go(AppRouter.routGetStartedScreen);
+                    GoRouter.of(context).go(AppRouter.routMainScreen);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(

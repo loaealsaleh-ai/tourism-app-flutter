@@ -1,60 +1,64 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tourismapp/const.dart';
+
+import '../../../const.dart';
 
 class BottomNavBarWidget extends StatelessWidget {
+  final int currentIndex;
+  final Function(int) onTap;
+
   const BottomNavBarWidget({
     super.key,
     required this.currentIndex,
     required this.onTap,
   });
 
-  final int currentIndex;
-  final Function(int) onTap;
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
-        border: Border(top: BorderSide(color: Colors.black12)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          navItem(Icons.home, 0),
-          navItem(Icons.explore, 1),
-          navItem(Icons.favorite_border, 2),
-          navItem(Icons.home_repair_service_outlined, 3),
-
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 20,
+            color: Colors.black.withOpacity(.08),
+            offset: const Offset(0, -2),
+          ),
         ],
       ),
-    );
-  }
-
-  Widget navItem(IconData icon, int index) {
-    bool isSelected = currentIndex == index;
-
-    return GestureDetector(
-      onTap: () => onTap(index),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? KPrimarColor : Colors.black54,
-            size: isSelected?30:27,
+      child: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: onTap,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        selectedItemColor: KPrimarColor,
+        unselectedItemColor: Colors.grey,
+        selectedFontSize: 15,
+        unselectedFontSize: 12,
+        elevation: 0,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, size: 28),
+            label: "Home",
           ),
-          const SizedBox(height: 6),
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            height: 3,
-            width: isSelected ? 20 : 0,
-            decoration: BoxDecoration(
-              color: KPrimarColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore_outlined, size: 28),
+            label: "Explore",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.receipt_long_outlined, size: 28),
+            label: "My Booking",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border, size: 28),
+            label: "Favorite",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.miscellaneous_services_outlined, size: 28),
+            label: "Services",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline, size: 28),
+            label: "Profile",
           ),
         ],
       ),

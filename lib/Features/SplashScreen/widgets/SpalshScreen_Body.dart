@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +15,9 @@ class SpalshScreenBody extends StatefulWidget {
 class _SpalshScreenBodyState extends State<SpalshScreenBody>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
-  late Animation<Offset> slidingAnimation;
+  bool showText = false;
+  late Animation<Offset> textAnimation;
+  late Animation<double> fadeAnimation;
 
   @override
   void initState() {
@@ -23,17 +25,41 @@ class _SpalshScreenBodyState extends State<SpalshScreenBody>
 
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
     );
-
-    slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 1.5), end: Offset.zero).animate(
-          CurvedAnimation(parent: animationController, curve: Curves.easeOut),
-        );
 
     animationController.forward();
 
-    Future.delayed(const Duration(seconds: 2), () async {
+    animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        if (!mounted) return;
+        setState(() {
+          showText = true;
+        });
+      }
+    });
+
+    textAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.5),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: animationController,
+        curve: Curves.easeOut,
+      ),
+    );
+
+    fadeAnimation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: animationController,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    Future.delayed(const Duration(seconds: 5), () async {
       if (!mounted) return;
 
       final prefs = await SharedPreferences.getInstance();
@@ -42,9 +68,9 @@ class _SpalshScreenBodyState extends State<SpalshScreenBody>
       if (!mounted) return;
 
       if (seenOnboarding) {
-        GoRouter.of(context).go(AppRouter.routGetStartedScreen);
+         GoRouter.of(context).go(AppRouter.routMainScreen);
       } else {
-        GoRouter.of(context).go(AppRouter.routOnboardingScreen);
+         GoRouter.of(context).go(AppRouter.routOnboardingScreen);
       }
     });
   }
@@ -59,31 +85,65 @@ class _SpalshScreenBodyState extends State<SpalshScreenBody>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned.fill(child: Image.asset(backgroundImage, fit: BoxFit.cover)),
         Positioned.fill(
-          child: Container(color: Colors.black.withOpacity(0.05)),
+          child: Image.asset(
+            backgroundImage,
+            fit: BoxFit.cover,
+          ),
         ),
+
+        Positioned.fill(
+          child: Container(
+            color: Colors.black.withOpacity(0.05),
+          ),
+        ),
+
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                logoImage,
-                width: MediaQuery.of(context).size.width * 0.35,
+              AnimatedBuilder(
+                animation: animationController,
+                builder: (context, child) {
+                  return ShaderMask(
+                    shaderCallback: (bounds) {
+                      return LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        stops: [
+                          (animationController.value - 0.2).clamp(0.0, 1.0),
+                          animationController.value.clamp(0.0, 1.0),
+                        ],
+                        colors: const [
+                          Colors.white,
+                          Colors.transparent,
+                        ],
+                      ).createShader(bounds);
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: Image.asset(
+                      logoImage,
+                      width: MediaQuery.of(context).size.width * 0.50,
+                    ),
+                  );
+                },
               ),
-              const SizedBox(height: 10),
-              SlideTransition(
-                position: slidingAnimation,
-                child: Image.asset(nameImage, width: 210),
-              ),
-              const SizedBox(height: 3),
-              const Text(
-                'Explore the Beauty of Syria',
-                style: TextStyle(
-                  color: KPrimarColor,
-                  fontSize: 16,
-                  letterSpacing: 1,
-                  fontWeight: FontWeight.bold,
+
+              const SizedBox(height: 8),
+
+              FadeTransition(
+                opacity: fadeAnimation,
+                child: SlideTransition(
+                  position: textAnimation,
+                  child: const Text(
+                    'Explore the Beauty of Syria',
+                    style: TextStyle(
+                      color: KPrimarColor,
+                      fontSize: 16,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ],
