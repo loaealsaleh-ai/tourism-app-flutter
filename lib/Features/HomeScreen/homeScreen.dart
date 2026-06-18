@@ -5,6 +5,7 @@ import 'package:tourismapp/Features/HomeScreen/widgets/homeHeaderWidget.dart';
 import 'package:tourismapp/Features/HomeScreen/widgets/listsViewWidgets/hotelListView.dart';
 import 'package:tourismapp/Features/HomeScreen/widgets/listsViewWidgets/restaurantListView.dart';
 import 'package:tourismapp/Features/HomeScreen/widgets/listsViewWidgets/tripeListView.dart';
+import 'package:tourismapp/Features/SeeAllScreen/seeAllType.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -14,12 +15,12 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             HomeHeaderWidget(),
-            RowsSeeAll(title: 'Trip Package'),
-            TripeListView(),
-            RowsSeeAll(title: 'Hotels'),
-            HotelListView(),
-            RowsSeeAll(title: 'Restaurants'),
-            RestaurantListView(),
+            RowsSeeAll(title: 'Trip Package',type: SeeAllType.trips,),
+            TripeListView(isSeeAll: false,),
+            RowsSeeAll(title: 'Hotels',type: SeeAllType.hotels,),
+            HotelListView(isSeeAll: false,),
+            RowsSeeAll(title: 'Restaurants',type: SeeAllType.restaurants,),
+            RestaurantListView(isSeeAll: false,),
             SizedBox(height: 50,)
           ],
         )

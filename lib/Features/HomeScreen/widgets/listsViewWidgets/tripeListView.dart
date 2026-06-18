@@ -3,18 +3,25 @@ import 'package:flutter/cupertino.dart';
 import '../TripPackageCard.dart';
 
 class TripeListView extends StatelessWidget {
-  const TripeListView({super.key});
+  const TripeListView({super.key, required this.isSeeAll});
+  final bool isSeeAll;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 210,
+      height: isSeeAll?null:210,
       child: ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: 5),
           itemCount: 10,
-          scrollDirection: Axis.horizontal,
+          scrollDirection:
+          isSeeAll?Axis.vertical: Axis.horizontal,
           itemBuilder: (context,index){
-        return TripPackageCard();
+        return Padding(
+          padding:  EdgeInsets.only(
+              bottom: isSeeAll?16:0
+          ),
+          child: TripPackageCard(),
+        );
       })
     );
   }
