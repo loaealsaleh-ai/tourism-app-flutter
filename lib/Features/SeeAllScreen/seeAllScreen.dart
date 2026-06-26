@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../const.dart';
+import '../HomeScreen/widgets/HotelCard.dart';
+import '../HomeScreen/widgets/TripPackageCard.dart';
 import '../HomeScreen/widgets/listsViewWidgets/hotelListView.dart';
 import '../HomeScreen/widgets/listsViewWidgets/restaurantListView.dart';
 import '../HomeScreen/widgets/listsViewWidgets/tripeListView.dart';
+import '../HomeScreen/widgets/restaurant_card.dart';
 import '../HomeScreen/widgets/searchWidget.dart';
 import 'seeAllType.dart';
 
@@ -27,22 +30,16 @@ class SeeAllScreen extends StatelessWidget {
     }
   }
 
-  Widget getContent() {
+  Widget getItem() {
     switch (type) {
       case SeeAllType.trips:
-        return const TripeListView(
-          isSeeAll: true,
-        );
+        return const TripPackageCard();
 
       case SeeAllType.hotels:
-        return const HotelListView(
-          isSeeAll: true,
-        );
+        return const HotelCard();
 
       case SeeAllType.restaurants:
-        return const RestaurantListView(
-          isSeeAll: true,
-        );
+        return const RestaurantCard();
     }
   }
 
@@ -62,16 +59,37 @@ class SeeAllScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 15),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: SearchWidget(),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 15),
           ),
-          const SizedBox(height: 15),
-          Expanded(
-            child: getContent(),
+
+          const SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            sliver: SliverToBoxAdapter(
+              child: SearchWidget(),
+            ),
+          ),
+
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 15),
+          ),
+
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: getItem(),
+                  );
+                },
+                childCount: 10,
+              ),
+            ),
           ),
         ],
       ),

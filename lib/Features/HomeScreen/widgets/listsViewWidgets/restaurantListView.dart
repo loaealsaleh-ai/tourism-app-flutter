@@ -12,6 +12,7 @@ class RestaurantListView extends StatelessWidget {
       height:isSeeAll? null: 270,
       child: ListView.builder(
           padding: EdgeInsets.only(left: 10,right: 10),
+          physics: BouncingScrollPhysics(),
           scrollDirection:
           isSeeAll?Axis.vertical: Axis.horizontal,
           itemCount: 10,

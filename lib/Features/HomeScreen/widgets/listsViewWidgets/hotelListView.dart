@@ -11,6 +11,7 @@ class HotelListView extends StatelessWidget {
       height:isSeeAll?null: 250,
       child:ListView.builder(
           padding: EdgeInsets.symmetric(horizontal: 5),
+          physics: BouncingScrollPhysics(),
           scrollDirection:
           isSeeAll?Axis.vertical: Axis.horizontal,
           itemCount: 10,
