@@ -13,6 +13,7 @@ class TripeListView extends StatelessWidget {
       child: ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: 5),
           itemCount: 10,
+          physics: BouncingScrollPhysics(),
           scrollDirection:
           isSeeAll?Axis.vertical: Axis.horizontal,
           itemBuilder: (context,index){

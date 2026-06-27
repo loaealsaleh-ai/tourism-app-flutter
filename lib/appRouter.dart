@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'Features/Hotels/presntation/views/hotelScreen.dart';
 import 'MainScreen.dart';
 import 'package:tourismapp/features/SplashScreen/splash_screen.dart';
 import 'package:tourismapp/features/On-boarding-Screens/OnboardingScreen.dart';
@@ -19,6 +20,8 @@ class AppRouter {
   static const String forgotPassword = '/forgotPassword';
   static const String resetPassword = '/resetPassword';
   static const String verifyCode = '/verifyCode';
+  static const String routHotelsScreen='/HotelsScreen';
+
 
   final AuthCubit authCubit;
 
@@ -60,6 +63,10 @@ class AppRouter {
       GoRoute(
         path: resetPassword,
         builder: (context, state) => ResetPasswordScreen(),
+      ),
+      GoRoute(
+        path: routHotelsScreen,
+        builder: (context, state) => HotelsScreen(),
       ),
     ],
   );

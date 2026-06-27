@@ -14,4 +14,5 @@ const String tripImage='assets/images/CardsImages/trip.png';
 
 
 const  KPrimarColor=Color(0xFF0F4D4A);
+const KBackgroundColor=Color(0xffEBF3F3);
 
