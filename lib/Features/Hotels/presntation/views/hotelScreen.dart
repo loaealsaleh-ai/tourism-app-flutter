@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tourismapp/Features/Hotels/data/repositories/hotel_repository.dart';
+import 'package:tourismapp/Features/Hotels/data/services/hotel_local_service.dart';
+import 'package:tourismapp/Features/Hotels/presentation/view_models/hotel_details_view_model.dart';
 import 'package:tourismapp/const.dart';
 import '../../../HomeScreen/widgets/searchWidget.dart';
 import '../widgets/room_item_card.dart';
@@ -8,31 +12,35 @@ class HotelsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: KBackgroundColor,
-      appBar: AppBar(
+    return BlocProvider(
+      create: (_) => HotelDetailsViewModel(
+        HotelRepository(HotelLocalService()),
+      )..loadRooms(),
+      child: Scaffold(
         backgroundColor: KBackgroundColor,
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: KPrimarColor),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          'Royal Hotel',
-          style: TextStyle(
-            color: KPrimarColor,
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
+        appBar: AppBar(
+          backgroundColor: KBackgroundColor,
+          elevation: 0,
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new, color: KPrimarColor),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: const Text(
+            'Royal Hotel',
+            style: TextStyle(
+              color: KPrimarColor,
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14),
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
-          slivers: [
-            const SliverToBoxAdapter(child: SizedBox(height: 8)),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
           /*  const SliverToBoxAdapter(
               child: Text(
@@ -44,19 +52,20 @@ class HotelsScreen extends StatelessWidget {
                 ),
               ),
             ),*/
-            const SliverToBoxAdapter(child: SearchWidget()),
+              const SliverToBoxAdapter(child: SearchWidget()),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return const Padding(
-                  padding: EdgeInsets.only(bottom: 22),
-                  child: roomItemCard(),
-                );
-              }, childCount: 8),
-            ),
-          ],
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return const Padding(
+                    padding: EdgeInsets.only(bottom: 22),
+                    child: roomItemCard(),
+                  );
+                }, childCount: 8),
+              ),
+            ],
+          ),
         ),
       ),
     );

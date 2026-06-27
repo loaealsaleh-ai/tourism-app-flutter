@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tourismapp/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:tourismapp/features/auth/presentation/cubit/auth_state.dart';
+import 'package:tourismapp/Features/auth/presentation/view_models/auth_state.dart';
+import 'package:tourismapp/Features/auth/presentation/view_models/auth_view_model.dart';
 import 'package:tourismapp/appRouter.dart';
 import 'package:tourismapp/const.dart';
 
@@ -21,7 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
+    return BlocListener<AuthViewModel, AuthState>(
       listener: (context, state) {
         if (state is AuthLoading) {
           showDialog(
@@ -131,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       InkWell(
                         onTap: () {
-                          context.read<AuthCubit>().register(
+                          context.read<AuthViewModel>().register(
                             username: usernameController.text.trim(),
                             email: emailController.text.trim(),
                             password: passwordController.text.trim(),

@@ -1,17 +1,1 @@
-abstract class AuthState {}
-
-class AuthInitial extends AuthState {}
-
-class AuthLoading extends AuthState {}
-
-class AuthSuccess extends AuthState {
-  final String message;
-  AuthSuccess(this.message);
-}
-
-class LoginSuccess extends AuthState {}
-
-class AuthError extends AuthState {
-  final String error;
-  AuthError(this.error);
-}
+export 'package:tourismapp/Features/auth/presentation/view_models/auth_state.dart';

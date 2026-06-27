@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourismapp/const.dart';
-import 'package:tourismapp/features/On-boarding-Screens/widgets/buildDot.dart';
+import 'package:tourismapp/core/storage/onboarding_storage_service.dart';
+import 'package:tourismapp/Features/On-boarding-Screens/presentation/view_models/onboarding_view_model.dart';
+import 'package:tourismapp/Features/On-boarding-Screens/widgets/buildDot.dart';
 import 'package:tourismapp/appRouter.dart';
 
 class ScreenThree extends StatelessWidget {
@@ -54,9 +54,10 @@ class ScreenThree extends StatelessWidget {
                 SizedBox(height: 30),
                 InkWell(
                   onTap: () async {
-                    final prefs = await SharedPreferences.getInstance();
-
-                    await prefs.setBool('seenOnboarding', true);
+                    final viewModel = OnboardingViewModel(
+                      OnboardingStorageService(),
+                    );
+                    await viewModel.completeOnboarding();
 
                     if (!context.mounted) return;
 

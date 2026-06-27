@@ -1,42 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tourismapp/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:tourismapp/features/auth/presentation/cubit/auth_state.dart';
+import 'package:tourismapp/Features/auth/presentation/view_models/auth_state.dart';
+import 'package:tourismapp/Features/auth/presentation/view_models/auth_view_model.dart';
 import 'package:tourismapp/appRouter.dart';
 import 'package:tourismapp/const.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final emailController = TextEditingController();
-  final passwordController = TextEditingController();
 
   @override
   void dispose() {
     emailController.dispose();
-    passwordController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<AuthCubit, AuthState>(
+      body: BlocConsumer<AuthViewModel, AuthState>(
         listener: (context, state) {
-          if (state is LoginSuccess) {
-            context.go(AppRouter.routMainScreen);
+          if (state is ForgotPasswordSuccess) {
+            context.go(
+              '${AppRouter.verifyCode}?email=${Uri.encodeComponent(state.email)}',
+            );
           }
 
           if (state is AuthError) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.error)));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.error.replaceAll('Exception: ', ''))),
+            );
           }
         },
         builder: (context, state) {
@@ -47,7 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
               Positioned.fill(
                 child: Image.asset(GetStartedImage, fit: BoxFit.cover),
               ),
-
               SingleChildScrollView(
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height,
@@ -57,50 +56,41 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Login",
+                          'Forgot Password',
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                             color: KPrimarColor,
                           ),
                         ),
-
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Enter your email to receive a code',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black54, fontSize: 16),
+                        ),
                         const SizedBox(height: 40),
-
                         TextField(
                           controller: emailController,
                           decoration: InputDecoration(
-                            hintText: "Email",
+                            hintText: 'Email',
                             prefixIcon: Icon(Icons.email, color: KPrimarColor),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
-                          ),
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        TextField(
-                          controller: passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: "Password",
-                            prefixIcon: Icon(Icons.lock, color: KPrimarColor),
-                            border: OutlineInputBorder(
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: KPrimarColor),
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
                         ),
-
-                        const SizedBox(height: 20),
-
+                        const SizedBox(height: 30),
                         InkWell(
                           onTap: isLoading
                               ? null
                               : () {
-                                  context.read<AuthCubit>().login(
+                                  context.read<AuthViewModel>().forgotPassword(
                                     email: emailController.text.trim(),
-                                    password: passwordController.text.trim(),
                                   );
                                 },
                           child: Container(
@@ -116,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       color: Colors.white,
                                     )
                                   : const Text(
-                                      "Login",
+                                      'Send Code',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -126,16 +116,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 20),
-
                         TextButton(
                           onPressed: () {
-                            context.go(AppRouter.register);
+                            context.go(AppRouter.login);
                           },
                           child: Text(
-                            "Don't have an account? Register",
-                            style: TextStyle(color: KPrimarColor),
+                            'Back to Login',
+                            style: TextStyle(
+                              color: KPrimarColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],

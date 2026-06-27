@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tourismapp/features/On-boarding-Screens/ScreenOne.dart';
-import 'package:tourismapp/features/On-boarding-Screens/ScreenThree.dart';
-import 'package:tourismapp/features/On-boarding-Screens/ScreenTwo.dart';
+import 'package:tourismapp/Features/On-boarding-Screens/ScreenOne.dart';
+import 'package:tourismapp/Features/On-boarding-Screens/ScreenThree.dart';
+import 'package:tourismapp/Features/On-boarding-Screens/ScreenTwo.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

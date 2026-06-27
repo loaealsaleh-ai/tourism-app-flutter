@@ -1,9 +1,8 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tourismapp/appRouter.dart';
 import 'package:tourismapp/const.dart';
+import 'package:tourismapp/core/storage/onboarding_storage_service.dart';
+import 'package:tourismapp/Features/SplashScreen/presentation/view_models/splash_view_model.dart';
 
 class SpalshScreenBody extends StatefulWidget {
   const SpalshScreenBody({super.key});
@@ -15,6 +14,7 @@ class SpalshScreenBody extends StatefulWidget {
 class _SpalshScreenBodyState extends State<SpalshScreenBody>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
+  late final SplashViewModel splashViewModel;
   bool showText = false;
   late Animation<Offset> textAnimation;
   late Animation<double> fadeAnimation;
@@ -22,6 +22,7 @@ class _SpalshScreenBodyState extends State<SpalshScreenBody>
   @override
   void initState() {
     super.initState();
+    splashViewModel = SplashViewModel(OnboardingStorageService());
 
     animationController = AnimationController(
       vsync: this,
@@ -62,16 +63,11 @@ class _SpalshScreenBodyState extends State<SpalshScreenBody>
     Future.delayed(const Duration(seconds: 5), () async {
       if (!mounted) return;
 
-      final prefs = await SharedPreferences.getInstance();
-      final seenOnboarding = prefs.getBool('seenOnboarding') ?? false;
+      final nextRoute = await splashViewModel.getNextRoute();
 
       if (!mounted) return;
 
-      if (seenOnboarding) {
-         GoRouter.of(context).go(AppRouter.routMainScreen);
-      } else {
-         GoRouter.of(context).go(AppRouter.routOnboardingScreen);
-      }
+      GoRouter.of(context).go(nextRoute);
     });
   }
 

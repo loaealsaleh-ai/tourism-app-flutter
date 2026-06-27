@@ -1,35 +1,35 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourismapp/Features/HomeScreen/widgets/bottomNavBarWidget.dart';
+import 'package:tourismapp/Features/main/presentation/view_models/main_view_model.dart';
 
 import 'Features/HomeScreen/homeScreen.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int currentIndex = 0;
-
-  final List<Widget> screens = [
+  static final List<Widget> _screens = [
     const HomeScreen(),
     const Center(child: Text("Explore")),
-    const Center(child: Text("favorite")),
-    const Center(child: Text("reservation")),
+    const Center(child: Text("My Booking")),
+    const Center(child: Text("Favorite")),
+    const Center(child: Text("Services")),
+    const Center(child: Text("Profile")),
   ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: screens[currentIndex],
-      bottomNavigationBar: BottomNavBarWidget(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
+    return BlocProvider(
+      create: (_) => MainViewModel(),
+      child: BlocBuilder<MainViewModel, int>(
+        builder: (context, currentIndex) {
+          return Scaffold(
+            body: _screens[currentIndex],
+            bottomNavigationBar: BottomNavBarWidget(
+              currentIndex: currentIndex,
+              onTap: context.read<MainViewModel>().changeTab,
+            ),
+          );
         },
       ),
     );

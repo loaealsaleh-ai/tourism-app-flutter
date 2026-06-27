@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tourismapp/const.dart';
-import 'package:tourismapp/features/On-boarding-Screens/widgets/buildDot.dart';
+import 'package:tourismapp/Features/On-boarding-Screens/widgets/buildDot.dart';
 
 class ScreenTwo extends StatelessWidget {
   const ScreenTwo({super.key, required this.pageController});

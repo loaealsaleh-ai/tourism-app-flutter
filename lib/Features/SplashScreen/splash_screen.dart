@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'widgets/SpalshScreen_Body.dart';
+import 'presentation/widgets/splash_screen_body.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }

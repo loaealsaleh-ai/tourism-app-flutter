@@ -1,18 +1,19 @@
-import 'dart:ui';
+import 'app/theme/app_colors.dart';
+import 'core/constants/asset_paths.dart';
 
-const String logoImage='assets/img_5.png';
-const String backgroundImage='assets/backgound.png';
-const String OnBoardingImageOne='assets/image_1.png';
-const String OnBoardingImageTwo='assets/img_2.png';
-const String OnBoardingImageThree='assets/img_3.png';
+const String logoImage = AssetPaths.logoImage;
+const String backgroundImage = AssetPaths.backgroundImage;
+const String OnBoardingImageOne = AssetPaths.onboardingImageOne;
+const String OnBoardingImageTwo = AssetPaths.onboardingImageTwo;
+const String OnBoardingImageThree = AssetPaths.onboardingImageThree;
 //const String nameImage='assets/img.png';
-const String GetStartedImage='assets/img_4.png';
-const String card1Image='assets/images/CardsImages/card1.png';
-const String RestaurantsImage='assets/images/CardsImages/restaurant.png';
-const String hotelImage='assets/images/CardsImages/hotel.png';
-const String tripImage='assets/images/CardsImages/trip.png';
+const String GetStartedImage = AssetPaths.getStartedImage;
+const String card1Image = AssetPaths.card1Image;
+const String RestaurantsImage = AssetPaths.restaurantsImage;
+const String hotelImage = AssetPaths.hotelImage;
+const String tripImage = AssetPaths.tripImage;
 
 
-const  KPrimarColor=Color(0xFF0F4D4A);
-const KBackgroundColor=Color(0xffEBF3F3);
+const KPrimarColor = AppColors.primary;
+const KBackgroundColor = AppColors.background;
 

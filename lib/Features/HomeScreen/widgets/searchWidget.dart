@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../../const.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({super.key});
