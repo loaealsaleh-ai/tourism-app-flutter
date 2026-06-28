@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tourismapp/const.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
 
 import 'package:tourismapp/app/router/app_router.dart';
 

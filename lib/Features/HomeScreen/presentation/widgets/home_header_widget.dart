@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourismapp/Features/HomeScreen/widgets/app_bar_widget.dart';
+import 'package:tourismapp/Features/HomeScreen/presentation/widgets/app_bar_widget.dart';
 import 'package:tourismapp/core/widgets/search_widget.dart';
 
 class HomeHeaderWidget extends StatelessWidget {

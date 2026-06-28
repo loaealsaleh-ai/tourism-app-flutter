@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:tourismapp/Features/HomeScreen/widgets/hotel_card.dart';
 
-class HotelListView extends StatelessWidget {
-  const HotelListView({super.key, required this.isSeeAll});
+import 'package:tourismapp/core/widgets/cards/restaurant_card.dart';
+
+class RestaurantListView extends StatelessWidget {
+  const RestaurantListView({super.key, required this.isSeeAll});
   final bool isSeeAll;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height:isSeeAll?null: 250,
-      child:ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+      height:isSeeAll? null: 270,
+      child: ListView.builder(
+          padding: EdgeInsets.only(left: 10,right: 10),
           physics: BouncingScrollPhysics(),
           scrollDirection:
           isSeeAll?Axis.vertical: Axis.horizontal,
@@ -18,9 +19,9 @@ class HotelListView extends StatelessWidget {
           itemBuilder: (context,index){
         return Padding(
           padding:  EdgeInsets.only(
-              bottom: isSeeAll?16:0
+            bottom: isSeeAll?16:0
           ),
-          child: HotelCard(),
+          child: RestaurantCard(),
         );
       })
     );

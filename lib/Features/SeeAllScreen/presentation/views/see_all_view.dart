@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tourismapp/Features/HomeScreen/widgets/hotel_card.dart';
-import 'package:tourismapp/Features/HomeScreen/widgets/restaurant_card.dart';
-import 'package:tourismapp/Features/HomeScreen/widgets/trip_package_card.dart';
 import 'package:tourismapp/Features/SeeAllScreen/presentation/view_models/see_all_type.dart';
-import 'package:tourismapp/const.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
+import 'package:tourismapp/core/widgets/cards/hotel_card.dart';
+import 'package:tourismapp/core/widgets/cards/restaurant_card.dart';
+import 'package:tourismapp/core/widgets/cards/trip_package_card.dart';
 import 'package:tourismapp/core/widgets/search_widget.dart';
 
 class SeeAllView extends StatelessWidget {

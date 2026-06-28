@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourismapp/const.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
 
 class FirstImageWidget extends StatelessWidget {
   const FirstImageWidget({super.key});

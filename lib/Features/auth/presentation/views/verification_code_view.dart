@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_state.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_view_model.dart';
 import 'package:tourismapp/app/router/app_router.dart';
-import 'package:tourismapp/const.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
   const VerificationCodeScreen({super.key, required this.email});

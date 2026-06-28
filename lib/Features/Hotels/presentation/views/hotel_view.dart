@@ -4,7 +4,7 @@ import 'package:tourismapp/Features/Hotels/data/repositories/hotel_repository.da
 import 'package:tourismapp/Features/Hotels/data/services/hotel_local_service.dart';
 import 'package:tourismapp/Features/Hotels/presentation/view_models/hotel_details_view_model.dart';
 import 'package:tourismapp/core/widgets/search_widget.dart';
-import 'package:tourismapp/const.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
 import '../widgets/room_item_card.dart';
 
 class HotelsView extends StatelessWidget {

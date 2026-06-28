@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../trip_package_card.dart';
+import 'package:tourismapp/core/widgets/cards/trip_package_card.dart';
 
 class TripeListView extends StatelessWidget {
   const TripeListView({super.key, required this.isSeeAll});

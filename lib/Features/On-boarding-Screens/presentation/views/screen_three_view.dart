@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/app/router/app_router.dart';
-import 'package:tourismapp/const.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
 import 'package:tourismapp/core/storage/onboarding_storage_service.dart';
 import 'package:tourismapp/Features/On-boarding-Screens/presentation/view_models/onboarding_view_model.dart';
 import '../widgets/onboarding_dot.dart';

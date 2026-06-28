@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../const.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
 import '../../SeeAllScreen/presentation/views/see_all_view.dart';
 import '../../SeeAllScreen/presentation/view_models/see_all_type.dart';
 

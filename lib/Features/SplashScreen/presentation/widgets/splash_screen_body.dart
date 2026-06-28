@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tourismapp/const.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
 import 'package:tourismapp/core/storage/onboarding_storage_service.dart';
 import 'package:tourismapp/Features/SplashScreen/presentation/view_models/splash_view_model.dart';
 

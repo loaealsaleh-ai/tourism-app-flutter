@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourismapp/const.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
 import '../widgets/onboarding_dot.dart';
 
 class ScreenOneView extends StatelessWidget {
