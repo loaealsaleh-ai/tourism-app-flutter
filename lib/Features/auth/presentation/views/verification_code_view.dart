@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_state.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_view_model.dart';
-import 'package:tourismapp/appRouter.dart';
+import 'package:tourismapp/app/router/app_router.dart';
 import 'package:tourismapp/const.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
@@ -61,7 +61,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
           return Stack(
             children: [
               Positioned.fill(
-                child: Image.asset(GetStartedImage, fit: BoxFit.cover),
+                child: Image.asset(getStartedImage, fit: BoxFit.cover),
               ),
               SingleChildScrollView(
                 child: SizedBox(
@@ -76,7 +76,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
-                            color: KPrimarColor,
+                            color: kPrimaryColor,
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -103,13 +103,13 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                     borderSide: BorderSide(
-                                      color: KPrimarColor,
+                                      color: kPrimaryColor,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                     borderSide: BorderSide(
-                                      color: KPrimarColor,
+                                      color: kPrimaryColor,
                                       width: 2,
                                     ),
                                   ),
@@ -160,7 +160,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                             width: double.infinity,
                             height: 55,
                             decoration: BoxDecoration(
-                              color: KPrimarColor,
+                              color: kPrimaryColor,
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Center(
@@ -187,7 +187,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                           child: Text(
                             'Back to Login',
                             style: TextStyle(
-                              color: KPrimarColor,
+                              color: kPrimaryColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

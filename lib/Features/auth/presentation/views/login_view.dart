@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_state.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_view_model.dart';
-import 'package:tourismapp/appRouter.dart';
+import 'package:tourismapp/app/router/app_router.dart';
 import 'package:tourismapp/const.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
           return Stack(
             children: [
               Positioned.fill(
-                child: Image.asset(GetStartedImage, fit: BoxFit.cover),
+                child: Image.asset(getStartedImage, fit: BoxFit.cover),
               ),
 
               SingleChildScrollView(
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
-                            color: KPrimarColor,
+                            color: kPrimaryColor,
                           ),
                         ),
 
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: emailController,
                           decoration: InputDecoration(
                             hintText: "Email",
-                            prefixIcon: Icon(Icons.email, color: KPrimarColor),
+                            prefixIcon: Icon(Icons.email, color: kPrimaryColor),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: "Password",
-                            prefixIcon: Icon(Icons.lock, color: KPrimarColor),
+                            prefixIcon: Icon(Icons.lock, color: kPrimaryColor),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: double.infinity,
                             height: 55,
                             decoration: BoxDecoration(
-                              color: KPrimarColor,
+                              color: kPrimaryColor,
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Center(
@@ -135,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: Text(
                             "Don't have an account? Register",
-                            style: TextStyle(color: KPrimarColor),
+                            style: TextStyle(color: kPrimaryColor),
                           ),
                         ),
                       ],

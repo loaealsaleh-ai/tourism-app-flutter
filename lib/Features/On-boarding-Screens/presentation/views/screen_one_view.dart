@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:tourismapp/const.dart';
-import 'package:tourismapp/Features/On-boarding-Screens/widgets/buildDot.dart';
+import '../widgets/onboarding_dot.dart';
 
-class ScreenOne extends StatelessWidget {
-  const ScreenOne({super.key, required this.pageController});
+class ScreenOneView extends StatelessWidget {
+  const ScreenOneView({super.key, required this.pageController});
   final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned.fill(
-          child: Image.asset(OnBoardingImageOne, fit: BoxFit.cover),
+          child: Image.asset(onboardingImageOne, fit: BoxFit.cover),
         ),
 
         SafeArea(
@@ -25,7 +25,7 @@ class ScreenOne extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: KPrimarColor,
+                    color: kPrimaryColor,
                   ),
                 ),
                 SizedBox(height: 10),
@@ -43,9 +43,9 @@ class ScreenOne extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildDot(isActive: true),
-                    buildDot(isActive: false),
-                    buildDot(isActive: false),
+                    OnboardingDot(isActive: true),
+                    OnboardingDot(isActive: false),
+                    OnboardingDot(isActive: false),
                   ],
                 ),
                 SizedBox(height: 30),
@@ -66,7 +66,7 @@ class ScreenOne extends StatelessWidget {
                       width: double.infinity,
                       height: 55,
                       decoration: BoxDecoration(
-                        color: KPrimarColor,
+                        color: kPrimaryColor,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Center(
@@ -128,7 +128,7 @@ class ScreenOne extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              Image.asset(OnBoardingImageOne, height: 260),
+              Image.asset(onboardingImageOne, height: 260),
               SizedBox(height: 30),
               Text(
                 'Discover Syria',
@@ -136,7 +136,7 @@ class ScreenOne extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: KPrimarColor,
+                  color: kPrimaryColor,
                 ),
               ),
               SizedBox(height: 10),
@@ -154,9 +154,9 @@ class ScreenOne extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buildDot(isActive: true),
-                  buildDot(isActive: false),
-                  buildDot(isActive: false),
+                  OnboardingDot(isActive: true),
+                  OnboardingDot(isActive: false),
+                  OnboardingDot(isActive: false),
                 ],
               ),
               SizedBox(height: 30),
@@ -177,7 +177,7 @@ class ScreenOne extends StatelessWidget {
                     width: double.infinity,
                     height: 55,
                     decoration: BoxDecoration(
-                      color: KPrimarColor,
+                      color: kPrimaryColor,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Center(

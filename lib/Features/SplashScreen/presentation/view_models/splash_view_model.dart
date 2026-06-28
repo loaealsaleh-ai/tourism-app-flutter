@@ -1,4 +1,4 @@
-import 'package:tourismapp/appRouter.dart';
+import 'package:tourismapp/app/router/app_router.dart';
 import 'package:tourismapp/core/storage/onboarding_storage_service.dart';
 
 class SplashViewModel {

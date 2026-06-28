@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/Features/Hotels/presentation/views/hotel_view.dart';
-import 'package:tourismapp/Features/On-boarding-Screens/OnboardingScreen.dart';
-import 'package:tourismapp/Features/SplashScreen/splash_screen.dart';
+import 'package:tourismapp/Features/On-boarding-Screens/presentation/views/onboarding_view.dart';
+import 'package:tourismapp/Features/SplashScreen/presentation/views/splash_view.dart';
 import 'package:tourismapp/Features/auth/presentation/views/forgot_password_view.dart';
 import 'package:tourismapp/Features/auth/presentation/views/login_view.dart';
 import 'package:tourismapp/Features/auth/presentation/views/register_view.dart';
 import 'package:tourismapp/Features/auth/presentation/views/reset_password_view.dart';
 import 'package:tourismapp/Features/auth/presentation/views/verification_code_view.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_view_model.dart';
-import 'package:tourismapp/MainScreen.dart';
+import 'package:tourismapp/Features/main/presentation/views/main_view.dart';
 
 class AppRouter {
   static const String routOnboardingScreen = '/OnboardingScreen';
@@ -30,17 +30,17 @@ class AppRouter {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return SplashScreen();
+          return const SplashView();
         },
       ),
       GoRoute(
         path: routOnboardingScreen,
-        builder: (context, state) => const OnboardingScreen(),
+        builder: (context, state) => const OnboardingView(),
       ),
       GoRoute(
         path: routMainScreen,
         builder: (BuildContext context, GoRouterState state) {
-          return const MainScreen();
+          return const MainView();
         },
       ),
       GoRoute(path: login, builder: (context, state) => const LoginScreen()),
@@ -69,7 +69,7 @@ class AppRouter {
       ),
       GoRoute(
         path: routHotelsScreen,
-        builder: (context, state) => const HotelsScreen(),
+        builder: (context, state) => const HotelsView(),
       ),
     ],
   );

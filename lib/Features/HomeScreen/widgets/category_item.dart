@@ -25,14 +25,14 @@ class CategoryItem extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: KPrimarColor,
+            color: kPrimaryColor,
             size: 28,
           ),
           const SizedBox(height: 8),
           Text(
             title,
             style: const TextStyle(
-              color: KPrimarColor,
+              color: kPrimaryColor,
               fontSize: 15,
               fontWeight: FontWeight.bold,
             ),

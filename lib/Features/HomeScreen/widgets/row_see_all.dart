@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../const.dart';
-import '../../SeeAllScreen/seeAllScreen.dart';
-import '../../SeeAllScreen/seeAllType.dart';
+import '../../SeeAllScreen/presentation/views/see_all_view.dart';
+import '../../SeeAllScreen/presentation/view_models/see_all_type.dart';
 
 class RowsSeeAll extends StatelessWidget {
   const RowsSeeAll({super.key, required this.title, required this.type});
@@ -21,7 +20,7 @@ class RowsSeeAll extends StatelessWidget {
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: KPrimarColor
+                color: kPrimaryColor
             ),
           ),
           const Spacer(),
@@ -30,7 +29,7 @@ class RowsSeeAll extends StatelessWidget {
                Navigator.push(
                  context,
                  MaterialPageRoute(
-                   builder: (_) =>  SeeAllScreen(
+                   builder: (_) =>  SeeAllView(
                      type: type,
                    ),
                  ),
@@ -41,7 +40,7 @@ class RowsSeeAll extends StatelessWidget {
                   Text(
                     'See all',
                     style: TextStyle(
-                        color: KPrimarColor,
+                        color: kPrimaryColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 15
                     ),

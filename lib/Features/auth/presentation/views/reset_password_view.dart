@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_state.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_view_model.dart';
-import 'package:tourismapp/appRouter.dart';
+import 'package:tourismapp/app/router/app_router.dart';
 import 'package:tourismapp/const.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -59,7 +59,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           return Stack(
             children: [
               Positioned.fill(
-                child: Image.asset(GetStartedImage, fit: BoxFit.cover),
+                child: Image.asset(getStartedImage, fit: BoxFit.cover),
               ),
               SingleChildScrollView(
                 child: SizedBox(
@@ -74,7 +74,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
-                            color: KPrimarColor,
+                            color: kPrimaryColor,
                           ),
                         ),
                         const SizedBox(height: 40),
@@ -83,7 +83,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           obscureText: obscure1,
                           decoration: InputDecoration(
                             hintText: 'New Password',
-                            prefixIcon: Icon(Icons.lock, color: KPrimarColor),
+                            prefixIcon: Icon(Icons.lock, color: kPrimaryColor),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 obscure1
@@ -109,7 +109,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             hintText: 'Confirm Password',
                             prefixIcon: Icon(
                               Icons.lock_outline,
-                              color: KPrimarColor,
+                              color: kPrimaryColor,
                             ),
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -164,7 +164,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             width: double.infinity,
                             height: 55,
                             decoration: BoxDecoration(
-                              color: KPrimarColor,
+                              color: kPrimaryColor,
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Center(

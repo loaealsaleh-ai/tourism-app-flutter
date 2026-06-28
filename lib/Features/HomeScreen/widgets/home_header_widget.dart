@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tourismapp/Features/HomeScreen/widgets/appBarWidget.dart';
-import 'package:tourismapp/Features/HomeScreen/widgets/searchWidget.dart';
+import 'package:tourismapp/Features/HomeScreen/widgets/app_bar_widget.dart';
+import 'package:tourismapp/core/widgets/search_widget.dart';
 
 class HomeHeaderWidget extends StatelessWidget {
   const HomeHeaderWidget({super.key});

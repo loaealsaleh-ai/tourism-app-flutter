@@ -1,27 +1,26 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:tourismapp/Features/HomeScreen/widgets/hotel_card.dart';
 
-import '../TripPackageCard.dart';
-
-class TripeListView extends StatelessWidget {
-  const TripeListView({super.key, required this.isSeeAll});
+class HotelListView extends StatelessWidget {
+  const HotelListView({super.key, required this.isSeeAll});
   final bool isSeeAll;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: isSeeAll?null:210,
-      child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 5),
-          itemCount: 10,
+      height:isSeeAll?null: 250,
+      child:ListView.builder(
+          padding: EdgeInsets.symmetric(horizontal: 5),
           physics: BouncingScrollPhysics(),
           scrollDirection:
           isSeeAll?Axis.vertical: Axis.horizontal,
+          itemCount: 10,
           itemBuilder: (context,index){
         return Padding(
           padding:  EdgeInsets.only(
               bottom: isSeeAll?16:0
           ),
-          child: TripPackageCard(),
+          child: HotelCard(),
         );
       })
     );

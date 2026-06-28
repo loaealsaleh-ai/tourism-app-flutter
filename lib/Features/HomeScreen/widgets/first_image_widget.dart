@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tourismapp/const.dart';
 
@@ -14,7 +13,7 @@ class FirstImageWidget extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.white.withOpacity(0.5),
+            Colors.white.withValues(alpha: 0.5),
             Colors.transparent,
           ],
         ),
@@ -27,7 +26,7 @@ class FirstImageWidget extends StatelessWidget {
             Text(
               'Welcome to',
               style: TextStyle(
-                color: KPrimarColor,
+                color: kPrimaryColor,
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
               ),
@@ -35,7 +34,7 @@ class FirstImageWidget extends StatelessWidget {
             Text(
               'Shamora',
               style: TextStyle(
-                color: KPrimarColor,
+                color: kPrimaryColor,
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
               ),
@@ -44,7 +43,7 @@ class FirstImageWidget extends StatelessWidget {
             Text(
               'Explore the beauty of Syria\nbefore you start',
               style: TextStyle(
-                color: KPrimarColor,
+                color: kPrimaryColor,
                 fontSize: 16,
                 fontWeight: FontWeight.bold
               ),

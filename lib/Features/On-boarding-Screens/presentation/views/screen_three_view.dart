@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tourismapp/app/router/app_router.dart';
 import 'package:tourismapp/const.dart';
-import 'package:tourismapp/Features/On-boarding-Screens/widgets/buildDot.dart';
+import 'package:tourismapp/core/storage/onboarding_storage_service.dart';
+import 'package:tourismapp/Features/On-boarding-Screens/presentation/view_models/onboarding_view_model.dart';
+import '../widgets/onboarding_dot.dart';
 
-class ScreenTwo extends StatelessWidget {
-  const ScreenTwo({super.key, required this.pageController});
-  final PageController pageController;
+class ScreenThreeView extends StatelessWidget {
+  const ScreenThreeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned.fill(
-          child: Image.asset(OnBoardingImageTwo, fit: BoxFit.cover),
+          child: Image.asset(onboardingImageThree, fit: BoxFit.cover),
         ),
 
         SafeArea(
@@ -21,17 +24,17 @@ class ScreenTwo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  'Plan Your Trip',
+                  'Start with Shamora',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: KPrimarColor,
+                    color: kPrimaryColor,
                   ),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Find hotels, restaurants, and experiences tailored for you.',
+                  'Sign in to book, save favorites, and unlock the full travel experience.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
@@ -43,18 +46,22 @@ class ScreenTwo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildDot(isActive: false),
-                    buildDot(isActive: true),
-                    buildDot(isActive: false),
+                    OnboardingDot(isActive: false),
+                    OnboardingDot(isActive: false),
+                    OnboardingDot(isActive: true),
                   ],
                 ),
                 SizedBox(height: 30),
                 InkWell(
-                  onTap: () {
-                    pageController.nextPage(
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeInOut,
+                  onTap: () async {
+                    final viewModel = OnboardingViewModel(
+                      OnboardingStorageService(),
                     );
+                    await viewModel.completeOnboarding();
+
+                    if (!context.mounted) return;
+
+                    GoRouter.of(context).go(AppRouter.routMainScreen);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -65,12 +72,12 @@ class ScreenTwo extends StatelessWidget {
                       width: double.infinity,
                       height: 55,
                       decoration: BoxDecoration(
-                        color: KPrimarColor,
+                        color: kPrimaryColor,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Center(
                         child: Text(
-                          'Next',
+                          'Get Started',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -124,20 +131,20 @@ class ScreenTwo extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              Image.asset(OnBoardingImageTwo,height: 260,),
+              Image.asset(onboardingImageThree,height: 260,),
               SizedBox(height: 30,),
               Text(
-                'Plan Your Trip',
+                'Start with Shamora',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: KPrimarColor,
+                  color: kPrimaryColor,
                 ),
               ),
               SizedBox(height: 10),
               Text(
-                'Find hotels, restaurants, and experiences tailored for your perfect journey.',
+                'Sign in to book, save favorites, and unlock the full travel experience.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
@@ -149,18 +156,14 @@ class ScreenTwo extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buildDot(isActive: false,),
-                  buildDot(isActive: true,),
-                  buildDot(isActive: false,),
+                  OnboardingDot(isActive: false,),
+                  OnboardingDot(isActive: false,),
+                  OnboardingDot(isActive: true,),
                 ],
               ),
               SizedBox(height: 30),
               InkWell(
                 onTap: () {
-                  pageController.nextPage(
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeInOut,
-                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
@@ -168,12 +171,12 @@ class ScreenTwo extends StatelessWidget {
                     width: double.infinity,
                     height: 55,
                     decoration: BoxDecoration(
-                      color:KPrimarColor ,
+                      color:kPrimaryColor ,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Center(
                       child: Text(
-                        'Next',
+                        'Get Started',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

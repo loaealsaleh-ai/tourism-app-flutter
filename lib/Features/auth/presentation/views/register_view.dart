@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_state.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_view_model.dart';
-import 'package:tourismapp/appRouter.dart';
+import 'package:tourismapp/app/router/app_router.dart';
 import 'package:tourismapp/const.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -50,7 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         body: Stack(
           children: [
             Positioned.fill(
-              child: Image.asset(GetStartedImage, fit: BoxFit.cover),
+              child: Image.asset(getStartedImage, fit: BoxFit.cover),
             ),
 
             SingleChildScrollView(
@@ -66,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
-                          color: KPrimarColor,
+                          color: kPrimaryColor,
                         ),
                       ),
 
@@ -76,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: usernameController,
                         decoration: InputDecoration(
                           hintText: "Username",
-                          prefixIcon: Icon(Icons.person, color: KPrimarColor),
+                          prefixIcon: Icon(Icons.person, color: kPrimaryColor),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
@@ -89,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: emailController,
                         decoration: InputDecoration(
                           hintText: "Email",
-                          prefixIcon: Icon(Icons.email, color: KPrimarColor),
+                          prefixIcon: Icon(Icons.email, color: kPrimaryColor),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
@@ -103,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: "Password",
-                          prefixIcon: Icon(Icons.lock, color: KPrimarColor),
+                          prefixIcon: Icon(Icons.lock, color: kPrimaryColor),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
@@ -119,7 +119,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           hintText: "Confirm Password",
                           prefixIcon: Icon(
                             Icons.lock_outline,
-                            color: KPrimarColor,
+                            color: kPrimaryColor,
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
@@ -142,7 +142,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           width: double.infinity,
                           height: 55,
                           decoration: BoxDecoration(
-                            color: KPrimarColor,
+                            color: kPrimaryColor,
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: const Center(
@@ -166,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                         child: Text(
                           "Already have an account? Login",
-                          style: TextStyle(color: KPrimarColor),
+                          style: TextStyle(color: kPrimaryColor),
                         ),
                       ),
                     ],

@@ -26,9 +26,9 @@ class TripPackageCard extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.05),
-                    Colors.black.withOpacity(0.15),
-                    Colors.black.withOpacity(0.85),
+                    Colors.black.withValues(alpha: 0.05),
+                    Colors.black.withValues(alpha: 0.15),
+                    Colors.black.withValues(alpha: 0.85),
                   ],
                 ),
               ),
@@ -81,7 +81,7 @@ class TripPackageCard extends StatelessWidget {
                   const SizedBox(height: 12),
 
                   Divider(
-                    color: Colors.white.withOpacity(0.25),
+                    color: Colors.white.withValues(alpha: 0.25),
                     thickness: 1,
                     endIndent: 120,
                   ),
@@ -105,7 +105,7 @@ class TripPackageCard extends StatelessWidget {
                       Text(
                         '(230 reviews)',
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.85),
+                          color: Colors.white.withValues(alpha: 0.85),
                           fontSize: 13,
                         ),
                       ),

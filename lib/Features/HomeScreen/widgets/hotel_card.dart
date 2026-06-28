@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/const.dart';
 
-import '../../../appRouter.dart';
+import 'package:tourismapp/app/router/app_router.dart';
 
 class HotelCard extends StatelessWidget {
   const HotelCard({super.key});
@@ -42,13 +42,13 @@ class HotelCard extends StatelessWidget {
                       height: 34,
                       width: 34,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: 0.9),
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
                         Icons.favorite_border_outlined,
                         size: 21,
-                        color: KPrimarColor,
+                        color: kPrimaryColor,
                       ),
                     ),
                   ),
@@ -61,7 +61,7 @@ class HotelCard extends StatelessWidget {
                         vertical: 7,
                       ),
                       decoration: const BoxDecoration(
-                        color: KPrimarColor,
+                        color: kPrimaryColor,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(18),
                           bottomRight: Radius.circular(12),
@@ -92,7 +92,7 @@ class HotelCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        color: KPrimarColor,
+                        color: kPrimaryColor,
                       ),
                     ),
                     Row(
@@ -116,7 +116,7 @@ class HotelCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4,),
                 child: Row(
                   children: [
-                    Icon(Icons.location_on,size: 20,color: KPrimarColor,),
+                    Icon(Icons.location_on,size: 20,color: kPrimaryColor,),
                     Text(
                       'Damascus, Syria',
                       style: TextStyle(
