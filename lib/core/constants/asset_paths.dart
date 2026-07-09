@@ -11,4 +11,6 @@ class AssetPaths {
   static const String restaurantsImage = 'assets/images/CardsImages/restaurant.png';
   static const String hotelImage = 'assets/images/CardsImages/hotel.png';
   static const String tripImage = 'assets/images/CardsImages/trip.png';
+  static const String locationImage = 'assets/location.png';
+
 }

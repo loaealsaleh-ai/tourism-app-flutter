@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourismapp/Features/HomeScreen/presentation/views/home_view.dart';
 import 'package:tourismapp/Features/main/presentation/view_models/main_view_model.dart';
 import 'package:tourismapp/Features/main/presentation/widgets/bottom_nav_bar.dart';
+import 'package:tourismapp/core/constants/app_constants.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
@@ -23,6 +24,7 @@ class MainView extends StatelessWidget {
       child: BlocBuilder<MainViewModel, int>(
         builder: (context, currentIndex) {
           return Scaffold(
+            backgroundColor: kBackgroundColor,
             body: _screens[currentIndex],
             bottomNavigationBar: BottomNavBar(
               currentIndex: currentIndex,

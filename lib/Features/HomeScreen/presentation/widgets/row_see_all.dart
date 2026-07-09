@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:tourismapp/core/constants/app_constants.dart';
-import '../../SeeAllScreen/presentation/views/see_all_view.dart';
-import '../../SeeAllScreen/presentation/view_models/see_all_type.dart';
+import '../../../SeeAllScreen/presentation/view_models/see_all_type.dart';
+import '../../../SeeAllScreen/presentation/views/see_all_view.dart';
 
 class RowsSeeAll extends StatelessWidget {
   const RowsSeeAll({super.key, required this.title, required this.type});

@@ -11,6 +11,7 @@ const String card1Image = AssetPaths.card1Image;
 const String restaurantsImage = AssetPaths.restaurantsImage;
 const String hotelImage = AssetPaths.hotelImage;
 const String tripImage = AssetPaths.tripImage;
+const String locationImage=AssetPaths.locationImage;
 
 const kPrimaryColor = AppColors.primary;
 const kBackgroundColor = AppColors.background;
