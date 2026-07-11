@@ -5,12 +5,14 @@ import 'package:tourismapp/Features/main/presentation/view_models/main_view_mode
 import 'package:tourismapp/Features/main/presentation/widgets/bottom_nav_bar.dart';
 import 'package:tourismapp/core/constants/app_constants.dart';
 
+import '../../../Explore/presentation/views/explore_screen.dart';
+
 class MainView extends StatelessWidget {
   const MainView({super.key});
 
   static final List<Widget> _screens = [
     const HomeView(),
-    const Center(child: Text("Explore")),
+    const ExploreScreen(),
     const Center(child: Text("My Booking")),
     const Center(child: Text("Favorite")),
     const Center(child: Text("Services")),

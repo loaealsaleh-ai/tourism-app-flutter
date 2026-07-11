@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tourismapp/Features/Explore/presentation/views/comments_screen.dart';
+import 'package:tourismapp/Features/Explore/presentation/views/explore_screen.dart';
+import 'package:tourismapp/Features/Explore/presentation/views/place_details_screen.dart';
+import 'package:tourismapp/Features/Explore/presentation/widgets/detailsScreen/commet_card.dart';
 import 'package:tourismapp/Features/Hotels/presentation/views/hotel_view.dart';
 import 'package:tourismapp/Features/Hotels/presentation/views/success_screen.dart';
 import 'package:tourismapp/Features/On-boarding-Screens/presentation/views/onboarding_view.dart';
@@ -27,6 +31,9 @@ class AppRouter {
   static const String routRoomDetails='/RoomDetailsScreen';
   static const String routBookingScreen='/BookingScreen';
   static const String routSuccessScreen='/SuccessScreen';
+  static const String routExploreScreen='/ExploreScreen';
+  static const String routPlaceDetailsScreen='/PlaceDetailsScreen';
+  static const String routCommentsScreen='/CommentsScreen';
 
   final AuthViewModel authViewModel;
 
@@ -37,7 +44,10 @@ class AppRouter {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return SplashView();
+          return
+            //PlaceDetailsScreen();
+            MainView();
+            //SplashView();
             //RoomDetailsScreen();
         },
       ),
@@ -90,6 +100,18 @@ class AppRouter {
       GoRoute(
         path: routSuccessScreen,
         builder: (context, state) => const SuccessScreen(),
+      ),
+      GoRoute(
+        path: routExploreScreen,
+        builder: (context, state) => const ExploreScreen(),
+      ),
+      GoRoute(
+        path: routPlaceDetailsScreen,
+        builder: (context, state) => const PlaceDetailsScreen(),
+      ),
+      GoRoute(
+        path: routCommentsScreen,
+        builder: (context, state) => const CommentsScreen(),
       ),
     ],
   );
