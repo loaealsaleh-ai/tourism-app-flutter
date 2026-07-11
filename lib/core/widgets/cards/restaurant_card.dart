@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tourismapp/core/constants/app_constants.dart';
 
 class RestaurantCard extends StatelessWidget {
-  const RestaurantCard({super.key});
+  final String? route;
 
+  const RestaurantCard({
+    super.key,
+    this.route,
+  });
   @override
   Widget build(BuildContext context) {
     return Padding(
