@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+
+import 'package:tourismapp/core/constants/app_constants.dart';
+import '../../../SeeAllScreen/presentation/view_models/see_all_type.dart';
+import '../../../SeeAllScreen/presentation/views/see_all_view.dart';
+
+class RowsSeeAll extends StatelessWidget {
+  const RowsSeeAll({super.key, required this.title, required this.type});
+  final String title;
+  final SeeAllType type;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+      child: Row(
+        children: [
+           Text(
+            title,
+            style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: kPrimaryColor
+            ),
+          ),
+          const Spacer(),
+           InkWell(
+             onTap: (){
+               Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                   builder: (_) =>  SeeAllView(
+                     type: type,
+                   ),
+                 ),
+               );
+             },
+             child: Row(
+                children: [
+                  Text(
+                    'See all',
+                    style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15
+                    ),
+                  ),
+                  SizedBox(width: 5,),
+                  Icon(Icons.arrow_forward_ios_outlined,size: 15,)
+                ],
+              ),
+           )
+        ],
+      ),
+    );
+  }
+}
