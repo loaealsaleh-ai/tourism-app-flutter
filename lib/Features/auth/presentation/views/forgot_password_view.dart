@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_state.dart';
 import 'package:tourismapp/Features/auth/presentation/view_models/auth_view_model.dart';
+import 'package:tourismapp/Features/auth/presentation/widgets/auth_header_icon.dart';
+import 'package:tourismapp/Features/auth/presentation/widgets/custom_auth_text_field.dart';
+import 'package:tourismapp/Features/auth/presentation/widgets/primary_auth_button.dart';
 import 'package:tourismapp/app/router/app_router.dart';
 import 'package:tourismapp/core/constants/app_constants.dart';
 
@@ -25,116 +28,102 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       body: BlocConsumer<AuthViewModel, AuthState>(
         listener: (context, state) {
           if (state is ForgotPasswordSuccess) {
+
             context.go(
-              '${AppRouter.verifyCode}?email=${Uri.encodeComponent(state.email)}',
+              '${AppRouter.verifyCode}'
+              '?email=${Uri.encodeComponent(state.email)}'
+              '&isPasswordReset=true',
             );
           }
-
           if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.error.replaceAll('Exception: ', ''))),
+              SnackBar(
+                content: Text(state.error.replaceAll('Exception: ', '')),
+                backgroundColor: Colors.redAccent,
+              ),
             );
           }
         },
         builder: (context, state) {
           final isLoading = state is AuthLoading;
 
-          return Stack(
-            children: [
-              Positioned.fill(
-                child: Image.asset(getStartedImage, fit: BoxFit.cover),
-              ),
-              SingleChildScrollView(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Forgot Password',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: kPrimaryColor,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        const Text(
-                          'Enter your email to receive a code',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.black54, fontSize: 16),
-                        ),
-                        const SizedBox(height: 40),
-                        TextField(
-                          controller: emailController,
-                          decoration: InputDecoration(
-                            hintText: 'Email',
-                            prefixIcon: Icon(Icons.email, color: kPrimaryColor),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: kPrimaryColor),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 30),
-                        InkWell(
-                          onTap: isLoading
-                              ? null
-                              : () {
-                                  context.read<AuthViewModel>().forgotPassword(
-                                    email: emailController.text.trim(),
-                                  );
-                                },
-                          child: Container(
-                            width: double.infinity,
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: kPrimaryColor,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Center(
-                              child: isLoading
-                                  ? const CircularProgressIndicator(
-                                      color: Colors.white,
-                                    )
-                                  : const Text(
-                                      'Send Code',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        TextButton(
-                          onPressed: () {
-                            context.go(AppRouter.login);
-                          },
-                          child: Text(
-                            'Back to Login',
-                            style: TextStyle(
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
+          return SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () => context.go(AppRouter.login),
+                    icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                    padding: EdgeInsets.zero,
+                    color: kPrimaryColor,
+                  ),
+                  const SizedBox(height: 32),
+
+                  Center(
+                    child: AuthHeaderIcon(variant: AuthIconVariant.shieldLock),
+                  ),
+                  const SizedBox(height: 28),
+
+                  Center(
+                    child: Text(
+                      'Forgot Password',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: kPrimaryColor,
+                        fontFamily: 'Playfair Display',
+                      ),
                     ),
                   ),
-                ),
+                  const SizedBox(height: 10),
+
+                  Center(
+                    child: Text(
+                      'Enter your registered email address\nto receive a reset code.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 14,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 36),
+
+                  CustomAuthTextField(
+                    controller: emailController,
+                    hintText: 'Email',
+                    prefixIcon: Icons.mail_outline_rounded,
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(height: 28),
+
+                  PrimaryAuthButton(
+                    label: 'Send',
+                    isLoading: isLoading,
+                    onTap: () {
+                      final email = emailController.text.trim();
+                      if (email.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('Please enter your email')),
+                        );
+                        return;
+                      }
+                      context
+                          .read<AuthViewModel>()
+                          .forgotPassword(email: email);
+                    },
+                  ),
+                ],
               ),
-            ],
+            ),
           );
         },
       ),
