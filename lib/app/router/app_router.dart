@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/core/storage/token_storage_service.dart';
 import 'package:tourismapp/core/storage/onboarding_storage_service.dart';
@@ -13,6 +14,7 @@ import 'package:tourismapp/Features/Hotels/presentation/views/booking_screen.dar
 import 'package:tourismapp/Features/Hotels/presentation/views/room_details_screen.dart';
 
 import 'package:tourismapp/Features/On-boarding-Screens/presentation/views/onboarding_view.dart';
+import 'package:tourismapp/Features/SevricesScreen/presentation/views/services_screen.dart';
 import 'package:tourismapp/Features/SplashScreen/presentation/views/splash_view.dart';
 
 import 'package:tourismapp/Features/auth/presentation/views/forgot_password_view.dart';
@@ -28,6 +30,10 @@ import 'package:tourismapp/Features/main/presentation/views/main_view.dart';
 import 'package:tourismapp/Features/Restaurants/presentation/views/table_booking_screen.dart';
 import 'package:tourismapp/Features/Restaurants/presentation/views/restaurant_view.dart';
 import 'package:tourismapp/Features/Restaurants/presentation/views/restaurant_details_screen.dart';
+
+import '../../Features/SevricesScreen/data/services/translation_service.dart';
+import '../../Features/SevricesScreen/presentation/view_models/translation_cubit.dart';
+import '../../Features/SevricesScreen/presentation/views/translation_screen.dart';
 
 class AppRouter {
   static const String routOnboardingScreen = '/OnboardingScreen';
@@ -52,6 +58,10 @@ class AppRouter {
   static const String routRestaurantScreen = '/RestaurantScreen';
   static const String routRestaurantDetails = '/RestaurantDetailsScreen';
   static const String routTableBookingScreen = '/TableBookingScreen';
+
+  // services
+  static const String routServicesScreen = '/ServicesScreen';
+  static const String routTranslationScreen = '/TranslationScreen';
 
   final AuthViewModel authViewModel;
   final TokenStorageService tokenStorageService;
@@ -215,6 +225,22 @@ class AppRouter {
       GoRoute(
         path: routTableBookingScreen,
         builder: (context, state) => const TableBookingScreen(),
+      ),
+      
+      // Services & Translation
+      GoRoute(
+        path: routServicesScreen,
+        builder: (context, state) => ServicesScreen(),
+      ),
+      
+      GoRoute(
+        path: AppRouter.routTranslationScreen,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (_) => TranslationCubit(TranslationService()),
+            child: const TranslationScreen(),
+          );
+        },
       ),
     ],
   );

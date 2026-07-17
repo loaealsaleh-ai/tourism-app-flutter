@@ -54,7 +54,8 @@ class _BookingScreenState extends State<BookingScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(onPressed: (){
+                IconButton(
+                    onPressed: (){
                   context.go(AppRouter.routRoomDetails);
                 }, icon: Icon(Icons.arrow_back_ios_rounded,color: kPrimaryColor,)),
                 BookingHeader(),
