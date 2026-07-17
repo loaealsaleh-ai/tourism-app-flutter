@@ -39,7 +39,7 @@ class SeeAllView extends StatelessWidget {
 
 
       case SeeAllType.hotels:
-        return const HotelCard();
+        return  HotelCard();
 
 
       case SeeAllType.restaurants:
