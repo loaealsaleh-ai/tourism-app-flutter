@@ -19,6 +19,11 @@ class AuthViewModel extends Cubit<AuthState> {
     required String password,
     required String confirmPassword,
   }) async {
+    if (password != confirmPassword) {
+      emit(AuthError('Passwords do not match'));
+      return;
+    }
+
     emit(AuthLoading());
 
     try {
@@ -29,7 +34,7 @@ class AuthViewModel extends Cubit<AuthState> {
         confirmPassword: confirmPassword,
       );
 
-      emit(AuthSuccess(message));
+      emit(RegisterSuccess(message: message, email: email));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -98,6 +103,19 @@ class AuthViewModel extends Cubit<AuthState> {
         password: password,
       );
       emit(ResetPasswordSuccess(message));
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> logout() async {
+    emit(AuthLoading());
+
+    try {
+      await repository.logout();
+      await tokenStorageService.clearToken();
+
+      emit(LogoutSuccess());
     } catch (e) {
       emit(AuthError(e.toString()));
     }
