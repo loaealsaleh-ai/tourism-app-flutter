@@ -37,6 +37,15 @@ class ResetPasswordSuccess extends AuthState {
   ResetPasswordSuccess(this.message);
 }
 
+class RegisterSuccess extends AuthState {
+  final String message;
+  final String email;
+
+  RegisterSuccess({required this.message, required this.email});
+}
+
+class LogoutSuccess extends AuthState {}
+
 class AuthError extends AuthState {
   final String error;
 

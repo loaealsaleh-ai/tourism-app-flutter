@@ -10,32 +10,37 @@ class AuthApiService {
     required String username,
     required String email,
     required String password,
-    required String confirmPassword,
   }) {
     return apiClient.post(
-      endpoint: 'register',
+      endpoint: 'auth/register',
       data: {
         'username': username,
         'email': email,
         'password': password,
-        'password_confirmation': confirmPassword,
       },
     );
   }
 
   Future<Response<dynamic>> login({
-    required String email,
+    required String login,
     required String password,
   }) {
     return apiClient.post(
-      endpoint: 'login',
-      data: {'login': email, 'password': password},
+      endpoint: 'auth/login',
+      data: {'login': login, 'password': password},
+    );
+  }
+
+  Future<Response<dynamic>> logout() {
+    return apiClient.post(
+      endpoint: 'auth/logout',
+      data: {},
     );
   }
 
   Future<Response<dynamic>> forgotPassword({required String email}) {
     return apiClient.post(
-      endpoint: 'forgot-password',
+      endpoint: 'auth/forgot-password',
       data: {'email': email},
     );
   }
@@ -45,14 +50,14 @@ class AuthApiService {
     required String otp,
   }) {
     return apiClient.post(
-      endpoint: 'verify-otp',
+      endpoint: 'auth/verify-otp',
       data: {'email': email, 'otp': otp},
     );
   }
 
   Future<Response<dynamic>> resendOtp({required String email}) {
     return apiClient.post(
-      endpoint: 'resend-otp',
+      endpoint: 'auth/resend-otp',
       data: {'email': email},
     );
   }
@@ -63,7 +68,7 @@ class AuthApiService {
     required String password,
   }) {
     return apiClient.post(
-      endpoint: 'reset-password',
+      endpoint: 'auth/reset-password',
       data: {'email': email, 'otp': otp, 'password': password},
     );
   }

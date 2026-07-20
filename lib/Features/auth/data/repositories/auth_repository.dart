@@ -19,13 +19,12 @@ class AuthRepository {
         username: username,
         email: email,
         password: password,
-        confirmPassword: confirmPassword,
       );
 
       return response.data['message'];
     } on DioException catch (e) {
       if (e.response != null) {
-        return e.response!.data['message'];
+        throw Exception(e.response!.data['message']);
       }
       throw Exception('Network error');
     }
@@ -37,7 +36,7 @@ class AuthRepository {
   }) async {
     try {
       final response = await authApiService.login(
-        email: email,
+        login: email,
         password: password,
       );
 
@@ -100,6 +99,18 @@ class AuthRepository {
         otp: otp,
         password: password,
       );
+      return response.data['message'];
+    } on DioException catch (e) {
+      if (e.response != null) {
+        throw Exception(e.response!.data['message']);
+      }
+      throw Exception('Network error');
+    }
+  }
+
+  Future<String> logout() async {
+    try {
+      final response = await authApiService.logout();
       return response.data['message'];
     } on DioException catch (e) {
       if (e.response != null) {
