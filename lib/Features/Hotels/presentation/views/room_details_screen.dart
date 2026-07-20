@@ -9,6 +9,7 @@ import 'package:tourismapp/core/constants/app_constants.dart';
 import 'package:tourismapp/core/widgets/hotel_details_shimmer.dart';
 import '../../../../app/router/app_router.dart';
 import '../../../../core/network/api_client.dart';
+import '../../../../core/storage/token_storage_service.dart';
 import '../../data/repositories/room_repository.dart';
 import '../../data/services/room_service.dart';
 import '../view_models/roomCubit/room_details_cubit.dart';
@@ -37,7 +38,7 @@ class _RoomDetailsScreenState extends State<RoomDetailsScreen> {
 
     return BlocProvider(
       create: (_)=>
-      RoomDetailsCubit(RoomRepository(RoomService(ApiService(Dio()))))..getRoomById(widget.idRoom),
+      RoomDetailsCubit(RoomRepository(RoomService(ApiService(Dio() ,TokenStorageService(),))))..getRoomById(widget.idRoom),
       child: Scaffold(
         backgroundColor: kBackgroundColor,
         appBar: AppBar(
