@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:tourismapp/core/constants/app_constants.dart';
+
+import '../../../../core/widgets/image_shimmer.dart';
 
 class RoomThumbnailList extends StatelessWidget {
   final List<String> images;
@@ -27,6 +30,7 @@ class RoomThumbnailList extends StatelessWidget {
           return GestureDetector(
             onTap: () => onImageTap(index),
             child: Container(
+              width: size.width * 0.22,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: selectedImage == index
@@ -38,9 +42,10 @@ class RoomThumbnailList extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  images[index],
-                  width: size.width * 0.22,
+                child: CachedNetworkImage(
+                  imageUrl: images[index],
+                  placeholder: (context, url) => ImageShimmer(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                   fit: BoxFit.cover,
                 ),
               ),

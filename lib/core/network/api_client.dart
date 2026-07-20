@@ -34,7 +34,7 @@ class ApiClient {
       LogInterceptor(
         request: true,
         requestBody: true,
-        responseBody: true,
+        responseBody: false,
         error: true,
       ),
     );
@@ -46,6 +46,11 @@ class ApiClient {
   }) async {
     return dio.post('/$endpoint', data: data);
   }
+
+  Future<Response<dynamic>> get({required String endpoint}) async {
+    return dio.get('/$endpoint');
+  }
+
 }
 
 class ApiService extends ApiClient {

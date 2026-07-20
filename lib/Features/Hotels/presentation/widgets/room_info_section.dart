@@ -4,7 +4,9 @@ import 'package:tourismapp/core/constants/app_constants.dart';
 import '../../../../core/constants/app_text_styles.dart';
 
 class RoomInfoSection extends StatelessWidget {
-  const RoomInfoSection({super.key});
+  const RoomInfoSection({super.key, required this.price, required this.type});
+  final String price;
+  final String type;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class RoomInfoSection extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "\$000",
+                  "\$ ${price}",
                   style: TextStyle(
                     color: kPrimaryColor,
                     fontSize: 26,
@@ -45,16 +47,16 @@ class RoomInfoSection extends StatelessWidget {
 
         const SizedBox(height: 10),
 
-        const Row(
+         Row(
           children: [
             Icon(
-              Icons.location_on_outlined,
+              Icons.people,
               color: Colors.grey,
               size: 20,
             ),
             SizedBox(width: 8),
             Text(
-              "Location",
+              type,
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 16,

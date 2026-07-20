@@ -1,23 +1,24 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourismapp/Features/Hotels/data/models/hotel_model.dart';
 import 'package:tourismapp/app/router/app_router.dart';
 
 import '../../../../../core/constants/app_constants.dart';
+import '../../../../core/widgets/image_shimmer.dart';
 
-class PlaceImageSlider extends StatefulWidget {
-  const PlaceImageSlider({super.key});
+class HotelImageSlider extends StatefulWidget {
+  const HotelImageSlider({super.key, required this.hotel});
+  final HotelModel hotel;
 
   @override
-  State<PlaceImageSlider> createState() => _PlaceImageSliderState();
+  State<HotelImageSlider> createState() => _PlaceImageSliderState();
 }
 
-class _PlaceImageSliderState extends State<PlaceImageSlider> {
+class _PlaceImageSliderState extends State<HotelImageSlider> {
   final PageController controller = PageController();
 
   int currentIndex = 0;
-
-  final images = [tripImage, tripImage, tripImage];
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +35,14 @@ class _PlaceImageSliderState extends State<PlaceImageSlider> {
                 currentIndex = index;
               });
             },
-            itemCount: images.length,
+            itemCount: widget.hotel.images.length,
             itemBuilder: (context, index) {
-              return Image.asset(images[index], fit: BoxFit.cover);
+              return CachedNetworkImage(
+                imageUrl:widget.hotel.images[index].toString(),
+                placeholder: (context, url) => ImageShimmer(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                fit: BoxFit.cover,
+              );;
             },
           ),
 
@@ -77,7 +83,7 @@ class _PlaceImageSliderState extends State<PlaceImageSlider> {
               mainAxisAlignment: MainAxisAlignment.center,
 
               children: List.generate(
-                images.length,
+                widget.hotel.images.length,
 
                 (index) => Container(
                   margin: const EdgeInsets.symmetric(horizontal: 4),

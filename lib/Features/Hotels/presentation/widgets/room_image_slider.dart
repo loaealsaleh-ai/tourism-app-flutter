@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/widgets/image_shimmer.dart';
 import 'room_image_indicator.dart';
 
 class RoomImageSlider extends StatelessWidget {
@@ -31,14 +33,17 @@ class RoomImageSlider extends StatelessWidget {
               itemCount: images.length,
               onPageChanged: onPageChanged,
               itemBuilder: (context, index) {
-                return Image.asset(
-                  images[index],
+                return CachedNetworkImage(
+                  imageUrl: images[index],
+                  placeholder: (context, url) => ImageShimmer(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                   fit: BoxFit.cover,
                 );
               },
             ),
           ),
         ),
+
 
         Positioned(
           bottom: 12,

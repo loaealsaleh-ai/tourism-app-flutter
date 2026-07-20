@@ -1,8 +1,8 @@
-import '../models/hotel_model.dart';
+import '../../../Hotels/data/models/hotel_model.dart';
 import '../models/restaurant_model.dart';
 import '../models/trip_model.dart';
 
-class HomeLocalService {
+class HomeService {
   List<TripModel> getTrips() {
     return const [
       TripModel(
@@ -17,7 +17,7 @@ class HomeLocalService {
     ];
   }
 
-  List<HotelModel> getHotels() {
+  /*List<HotelModel> getHotels() {
     return const [
       HotelModel(
         name: 'Royal Hotel',
@@ -27,7 +27,7 @@ class HomeLocalService {
         rating: 4.8,
       ),
     ];
-  }
+  }*/
 
   List<RestaurantModel> getRestaurants() {
     return const [

@@ -1,17 +1,32 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tourismapp/Features/Hotels/data/models/room_model.dart';
 import 'package:tourismapp/core/constants/app_constants.dart';
 
 import '../../../../app/router/app_router.dart';
+import '../../../../core/widgets/image_shimmer.dart';
 
 class RoomItemCard extends StatelessWidget {
-  const RoomItemCard({super.key});
+  const RoomItemCard({super.key, required this.room});
+  final RoomModel room;
+
+  String shortDescription(String text) {
+    final words = text.split(' ');
+
+    if (words.length <= 2) {
+      return text;
+    }
+
+    return '${words.take(2).join(' ')}...';
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
       onTap: (){
-        GoRouter.of(context).go(AppRouter.routRoomDetails);
+        context.push(AppRouter.routRoomDetails,extra: room.id);
       },
       child: Container(
         height: 280,
@@ -38,10 +53,10 @@ class RoomItemCard extends StatelessWidget {
                     bottomLeft: Radius.circular(12),
                     bottomRight: Radius.circular(12),
                   ),
-                  child: Image.asset(
-                    'assets/rest.png',
-                    height: 155,
-                    width: double.infinity,
+                  child:CachedNetworkImage(
+                    imageUrl: room.images.first,
+                    placeholder: (context, url) => ImageShimmer(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -61,8 +76,8 @@ class RoomItemCard extends StatelessWidget {
                         bottomRight: Radius.circular(12),
                       ),
                     ),
-                    child: const Text(
-                      '\$120/night',
+                    child:  Text(
+                      '\$ ${room.pricePerNight}/night',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -92,16 +107,14 @@ class RoomItemCard extends StatelessWidget {
               ],
             ),
 
-            const Padding(
+             Padding(
               padding: EdgeInsets.fromLTRB(12, 12, 12, 0),
               child: Row(
                 children: [
                   Expanded(
                     child: Text(
-                      'Deluxe Room',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      shortDescription(room.description),
+                      style: const TextStyle(
                         color: kPrimaryColor,
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -111,7 +124,7 @@ class RoomItemCard extends StatelessWidget {
                   Icon(Icons.star, color: Colors.amber, size: 23),
                   SizedBox(width: 4),
                   Text(
-                    '4.8',
+                    room.rate.toString(),
                     style: TextStyle(
                       fontSize: 17,
                       color: Colors.black,
@@ -121,21 +134,16 @@ class RoomItemCard extends StatelessWidget {
                 ],
               ),
             ),
-
-            const Padding(
-              padding: EdgeInsets.fromLTRB(12, 6, 12, 0),
-              child: Row(
-                children: [
-                  Icon(Icons.location_on, color: kPrimaryColor, size: 18),
-                  SizedBox(width: 4),
-                  Text(
-                    'Damascus, Syria',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Text(
+                '${room.roomType[0].toUpperCase() + room.roomType.substring(1)} Room',
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.5,
+                ),
               ),
             ),
 
@@ -145,13 +153,18 @@ class RoomItemCard extends StatelessWidget {
               child: Row(
                 children: [
                   _RoomInfoItem(
-                    icon: Icons.groups_outlined,
-                    text: '3 guests',
+                    icon: Icons.apartment,
+                    text: '${room.floor} floor',
                   ),
                   const SizedBox(width: 18),
                   _RoomInfoItem(
                     icon: Icons.bed_outlined,
-                    text: '2 beds',
+                    text: '${room.bedsCount} beds',
+                  ),
+                  const SizedBox(width: 18),
+                  _RoomInfoItem(
+                    icon: Icons.bathtub,
+                    text: '${room.bathroomsCount} baths',
                   ),
                   const Spacer(),
                   Container(
