@@ -8,6 +8,7 @@ import 'package:tourismapp/core/widgets/search_widget.dart';
 import 'package:tourismapp/Features/Restaurants/presentation/widgets/restaurant_item_card.dart';
 import '../../../../app/router/app_router.dart';
 import '../../../../core/network/api_client.dart';
+import '../../../../core/storage/token_storage_service.dart';
 import '../../../HomeScreen/presentation/widgets/lists_view_widgets/hotel_list_view.dart';
 import '../../../Hotels/data/repositories/hotel_repository.dart';
 import '../../../Hotels/data/services/hotel_service.dart';
@@ -61,7 +62,7 @@ class SeeAllView extends StatelessWidget {
         create: (_) => HotelCubit(
           HotelRepository(
             HotelService(
-              ApiService(Dio()),
+              ApiService(Dio(), TokenStorageService(),),
             ),
           ),
         )..getHotels(),

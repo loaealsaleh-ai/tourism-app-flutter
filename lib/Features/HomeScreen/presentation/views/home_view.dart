@@ -11,6 +11,7 @@ import 'package:tourismapp/Features/HomeScreen/presentation/widgets/lists_view_w
 import 'package:tourismapp/Features/HomeScreen/presentation/widgets/row_see_all.dart';
 import 'package:tourismapp/Features/SeeAllScreen/presentation/view_models/see_all_type.dart';
 import '../../../../core/network/api_client.dart';
+import '../../../../core/storage/token_storage_service.dart';
 import '../../../Hotels/data/repositories/hotel_repository.dart';
 import '../../../Hotels/data/services/hotel_service.dart';
 import '../../../Hotels/presentation/view_models/hotelCubit/hotel_cubit.dart';
@@ -32,7 +33,7 @@ class HomeView extends StatelessWidget {
           create: (_) => HotelCubit(
             HotelRepository(
               HotelService(
-                ApiService(Dio()),
+                ApiService(Dio(), TokenStorageService(),),
               ),
             ),
           )..getHotels(),

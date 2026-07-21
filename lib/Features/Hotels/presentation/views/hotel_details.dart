@@ -9,6 +9,7 @@ import 'package:tourismapp/Features/Hotels/presentation/widgets/hotel_info.dart'
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/network/api_client.dart';
+import '../../../../core/storage/token_storage_service.dart';
 import '../../../../core/widgets/hotel_details_shimmer.dart';
 import '../../data/services/hotel_service.dart';
 import '../widgets/button_rooms.dart';
@@ -22,7 +23,7 @@ class HotelDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) =>
-          HotelDetailsCubit(HotelRepository(HotelService(ApiService(Dio()))))
+          HotelDetailsCubit(HotelRepository(HotelService(ApiService(Dio(), TokenStorageService(),))))
             ..getHotelById(id),
       child: Scaffold(
         backgroundColor: kBackgroundColor,

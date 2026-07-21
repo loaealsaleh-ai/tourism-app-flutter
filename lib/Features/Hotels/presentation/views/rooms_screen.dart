@@ -9,6 +9,7 @@ import 'package:tourismapp/core/network/api_client.dart';
 import 'package:tourismapp/core/widgets/search_widget.dart';
 import 'package:tourismapp/core/constants/app_constants.dart';
 import '../../../../app/router/app_router.dart';
+import '../../../../core/storage/token_storage_service.dart';
 import '../../../../core/widgets/card_shimmer.dart';
 import '../view_models/roomCubit/rooms_state.dart';
 import '../widgets/room_item_card.dart';
@@ -22,7 +23,7 @@ class RoomsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) =>
-          RoomsCubit(RoomRepository(RoomService( ApiService(Dio()))))
+          RoomsCubit(RoomRepository(RoomService( ApiService(Dio(), TokenStorageService(),))))
             ..getRooms(idHotel),
       child: Scaffold(
         backgroundColor: kBackgroundColor,
