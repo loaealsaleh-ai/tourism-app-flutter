@@ -5,20 +5,14 @@ class RoomDetailsSection extends StatelessWidget {
   final String bedrooms;
   final String bathrooms;
   final String balcony;
-  final String accessibility;
-  final String wifi;
-  final String restaurant;
-  final String parking;
+  final String floor;
 
   const RoomDetailsSection({
     super.key,
     required this.bedrooms,
     required this.bathrooms,
     required this.balcony,
-    required this.accessibility,
-    required this.wifi,
-    required this.restaurant,
-    required this.parking,
+    required this.floor
   });
 
   @override
@@ -27,10 +21,7 @@ class RoomDetailsSection extends StatelessWidget {
       {"icon": Icons.bed_outlined, "title": "Bedrooms", "value": bedrooms},
       {"icon": Icons.bathtub_outlined, "title": "Bathrooms", "value": bathrooms},
       {"icon": Icons.balcony_outlined, "title": "Balcony", "value": balcony},
-      {"icon": Icons.accessible_outlined, "title": "Accessibility", "value": accessibility},
-      {"icon": Icons.wifi, "title": "WI-FI", "value": wifi},
-      {"icon": Icons.restaurant, "title": "Restaurant", "value": restaurant},
-      {"icon": Icons.local_parking_outlined, "title": "Parking", "value": parking},
+      {"icon": Icons.apartment, "title": "floor", "value": floor},
     ];
 
     return Column(

@@ -1,11 +1,17 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourismapp/Features/SeeAllScreen/presentation/view_models/see_all_type.dart';
 import 'package:tourismapp/core/constants/app_constants.dart';
-import 'package:tourismapp/core/widgets/cards/hotel_card.dart';
 import 'package:tourismapp/core/widgets/cards/trip_package_card.dart';
 import 'package:tourismapp/core/widgets/search_widget.dart';
 import 'package:tourismapp/Features/Restaurants/presentation/widgets/restaurant_item_card.dart';
 import '../../../../app/router/app_router.dart';
+import '../../../../core/network/api_client.dart';
+import '../../../HomeScreen/presentation/widgets/lists_view_widgets/hotel_list_view.dart';
+import '../../../Hotels/data/repositories/hotel_repository.dart';
+import '../../../Hotels/data/services/hotel_service.dart';
+import '../../../Hotels/presentation/view_models/hotelCubit/hotel_cubit.dart';
 
 
 class SeeAllView extends StatelessWidget {
@@ -33,13 +39,12 @@ class SeeAllView extends StatelessWidget {
 
   Widget getItem() {
     switch (type) {
-
       case SeeAllType.trips:
         return const TripPackageCard();
 
 
       case SeeAllType.hotels:
-        return  HotelCard();
+        return HotelListView(isSeeAll: true,);
 
 
       case SeeAllType.restaurants:
@@ -52,70 +57,63 @@ class SeeAllView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kBackgroundColor,
+    return BlocProvider(
+        create: (_) => HotelCubit(
+          HotelRepository(
+            HotelService(
+              ApiService(Dio()),
+            ),
+          ),
+        )..getHotels(),
 
-      appBar: AppBar(
+      child: Scaffold(
         backgroundColor: kBackgroundColor,
-        elevation: 0,
-        centerTitle: true,
 
-        title: Text(
-          getTitle(),
-          style: const TextStyle(
-            color: kPrimaryColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
+        appBar: AppBar(
+          backgroundColor: kBackgroundColor,
+          elevation: 0,
+          centerTitle: true,
+
+          title: Text(
+            getTitle(),
+            style: const TextStyle(
+              color: kPrimaryColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 22,
+            ),
           ),
         ),
-      ),
 
 
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
+        body: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
 
-        slivers: [
-
-          const SliverToBoxAdapter(
-            child: SizedBox(height: 15),
-          ),
-
-
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-
-            sliver: SliverToBoxAdapter(
-              child: SearchWidget(),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 15),
             ),
-          ),
 
 
-          const SliverToBoxAdapter(
-            child: SizedBox(height: 15),
-          ),
+            const SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
 
-
-
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-
-                    child: getItem(),
-                  );
-
-                },
-
-                childCount: 10,
+              sliver: SliverToBoxAdapter(
+                child: SearchWidget(),
               ),
             ),
-          ),
-        ],
+
+
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 15),
+            ),
+
+            SliverToBoxAdapter(
+              child: getItem(),
+            ),
+
+
+          ],
+        ),
       ),
     );
   }

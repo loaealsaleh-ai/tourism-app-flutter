@@ -1,16 +1,16 @@
-import '../models/hotel_model.dart';
+import '../../../Hotels/data/models/hotel_model.dart';
 import '../models/restaurant_model.dart';
 import '../models/trip_model.dart';
-import '../services/home_local_service.dart';
+import '../services/home_service.dart';
 
 class HomeRepository {
-  final HomeLocalService homeLocalService;
+  final HomeService homeService;
 
-  HomeRepository(this.homeLocalService);
+  HomeRepository(this.homeService);
 
-  List<TripModel> getTrips() => homeLocalService.getTrips();
+  List<TripModel> getTrips() => homeService.getTrips();
 
-  List<HotelModel> getHotels() => homeLocalService.getHotels();
+  //List<HotelModel> getHotels() => homeService.getHotels();
 
-  List<RestaurantModel> getRestaurants() => homeLocalService.getRestaurants();
+  List<RestaurantModel> getRestaurants() => homeService.getRestaurants();
 }

@@ -6,8 +6,9 @@ import 'package:tourismapp/Features/Explore/presentation/views/comments_screen.d
 import 'package:tourismapp/Features/Explore/presentation/views/explore_screen.dart';
 import 'package:tourismapp/Features/Explore/presentation/views/place_details_screen.dart';
 import 'package:tourismapp/Features/Explore/presentation/widgets/detailsScreen/commet_card.dart';
+import 'package:tourismapp/Features/Hotels/presentation/views/hotel_details.dart';
 
-import 'package:tourismapp/Features/Hotels/presentation/views/hotel_view.dart';
+import 'package:tourismapp/Features/Hotels/presentation/views/rooms_screen.dart';
 import 'package:tourismapp/Features/Hotels/presentation/views/success_screen.dart';
 import 'package:tourismapp/Features/Hotels/presentation/views/booking_screen.dart';
 import 'package:tourismapp/Features/Hotels/presentation/views/room_details_screen.dart';
@@ -44,7 +45,8 @@ class AppRouter {
   static const String resetPassword = '/resetPassword';
   static const String verifyCode = '/verifyCode';
 
-  static const String routHotelsScreen = '/HotelsScreen';
+  static const String routHotelDetails='/HotelDetails';
+  static const String routRoomsScreen = '/RoomsScreen';
   static const String routRoomDetails = '/RoomDetailsScreen';
   static const String routBookingScreen = '/BookingScreen';
   static const String routSuccessScreen = '/SuccessScreen';
@@ -118,14 +120,32 @@ class AppRouter {
 
       // Hotels
       GoRoute(
-        path: routHotelsScreen,
-        builder: (context, state) => const HotelsView(),
+        path: routHotelDetails,
+        builder: (context, state) {
+          final hotelId=state.extra as int;
+          return HotelDetails(id: hotelId);
+        },
       ),
 
       GoRoute(
-        path: routRoomDetails,
-        builder: (context, state) => const RoomDetailsScreen(),
+        path: routRoomsScreen,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+
+          return RoomsScreen(
+            idHotel: data['hotelId'],
+            nameHotel: data['hotelName'],
+          );
+        },
       ),
+      GoRoute(
+        path: routRoomDetails,
+        builder: (context, state) {
+          final idRoom=state.extra as int;
+          return RoomDetailsScreen(idRoom: idRoom,);
+        },
+      ),
+
 
       GoRoute(
         path: routBookingScreen,

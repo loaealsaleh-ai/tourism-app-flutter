@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tourismapp/Features/Hotels/data/models/hotel_model.dart';
 import 'package:tourismapp/core/constants/app_constants.dart';
 
 import 'package:tourismapp/app/router/app_router.dart';
 
 class HotelCard extends StatelessWidget {
-  const HotelCard({super.key});
+  const HotelCard({super.key, required this.hotelModel});
+  final HotelModel hotelModel;
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +15,10 @@ class HotelCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10,vertical:10 ),
       child: InkWell(
         onTap: (){
-          GoRouter.of(context).go(AppRouter.routHotelsScreen);
+          context.push(AppRouter.routHotelDetails,extra: hotelModel.id);
       },
         child: Container(
+          height: 250,
           width: 250,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -81,14 +84,14 @@ class HotelCard extends StatelessWidget {
               ),
 
               const SizedBox(height: 10),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10,vertical: 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       maxLines: 1,
-                      'Royal Hotel',
+                      hotelModel.name,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
@@ -118,7 +121,7 @@ class HotelCard extends StatelessWidget {
                   children: [
                     Icon(Icons.location_on,size: 20,color: kPrimaryColor,),
                     Text(
-                      'Damascus, Syria',
+                      hotelModel.location,
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.black,

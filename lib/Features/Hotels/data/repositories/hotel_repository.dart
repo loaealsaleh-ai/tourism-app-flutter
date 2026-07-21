@@ -1,10 +1,22 @@
-import '../models/room_model.dart';
-import '../services/hotel_local_service.dart';
+import '../models/hotel_model.dart';
+import '../services/hotel_service.dart';
 
 class HotelRepository {
-  final HotelLocalService hotelLocalService;
+  final HotelService hotelService;
 
-  HotelRepository(this.hotelLocalService);
+  HotelRepository(this.hotelService);
 
-  List<RoomModel> getRooms() => hotelLocalService.getRooms();
+  Future<List<HotelModel>> getHotels() async {
+    final data = await hotelService.getHotels();
+
+    return (data['data'] as List)
+        .map((e) => HotelModel.fromJson(e))
+        .toList();
+  }
+
+  Future<HotelModel> getHotelById(int id) async {
+    final response = await hotelService.getHotelById(id);
+
+    return HotelModel.fromJson(response['data']);
+  }
 }
