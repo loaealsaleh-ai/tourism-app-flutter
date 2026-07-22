@@ -22,12 +22,24 @@ class RestaurantDetailsDescription extends StatelessWidget {
           style: AppTextStyles.title,
         ),
         const SizedBox(height: 8),
-        Text(
-          description,
-          style: TextStyle(
-            color: Colors.grey.shade600,
-            fontSize: 15,
-            height: 1.5,
+
+        // Fixed-height area (2 lines worth) so whatever comes after
+        // this section always starts at the same vertical position,
+        // regardless of how short or long the description text is.
+        SizedBox(
+          height: 45,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              description,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: Colors.grey.shade600,
+                fontSize: 15,
+                height: 1.5,
+              ),
+            ),
           ),
         ),
       ],

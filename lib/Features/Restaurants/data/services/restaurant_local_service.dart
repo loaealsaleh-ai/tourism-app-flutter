@@ -1,17 +1,25 @@
-import '../models/restaurant_model.dart';
+import 'package:tourismapp/Features/Restaurants/data/models/restaurant_model.dart';
+import 'package:tourismapp/core/network/api_client.dart';
 
 class RestaurantLocalService {
-  List<RestaurantModel> getRestaurants() {
-    return const [
-      RestaurantModel(
-        name: 'Deluxe Restaurant',
-        location: 'Damascus, Syria',
-        image: 'assets/rest.png',
-        price: '\$120/person',
-        guests: 3,
-        tables: 2,
-        rating: 4.8,
-      ),
-    ];
+  final ApiClient apiClient;
+
+  RestaurantLocalService(this.apiClient);
+
+  Future<List<RestaurantModel>> getRestaurants() async {
+
+    final response = await apiClient.get(
+      endpoint: 'allrestaurants',
+    );
+
+
+    final List<dynamic> data = response.data['data'];
+
+    return data
+        .map(
+          (restaurant) =>
+          RestaurantModel.fromJson(restaurant),
+    )
+        .toList();
   }
 }

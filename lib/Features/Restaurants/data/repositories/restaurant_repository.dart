@@ -6,5 +6,7 @@ class RestaurantRepository {
 
   RestaurantRepository(this.restaurantLocalService);
 
-  List<RestaurantModel> getRestaurants() => restaurantLocalService.getRestaurants();
+  Future<List<RestaurantModel>> getRestaurants() async {
+    return await restaurantLocalService.getRestaurants();
+  }
 }

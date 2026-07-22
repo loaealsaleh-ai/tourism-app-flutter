@@ -7,7 +7,17 @@ class RestaurantDetailsViewModel extends Cubit<List<RestaurantModel>> {
 
   RestaurantDetailsViewModel(this.repository) : super(const []);
 
-  void loadRestaurants() {
-    emit(repository.getRestaurants());
+  Future<void> loadRestaurants() async {
+    try {
+      final restaurants = await repository.getRestaurants();
+
+      print("Loaded restaurants: ${restaurants.length}");
+
+      emit(restaurants);
+    } catch (e) {
+      print("Restaurant Error: $e");
+
+      emit(const []);
+    }
   }
 }
